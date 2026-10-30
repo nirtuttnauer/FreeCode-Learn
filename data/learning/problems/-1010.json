@@ -1,0 +1,75 @@
+{
+  "id": -1010,
+  "title": "Assemble a pre-norm transformer block",
+  "slug": "llm-10",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "LLM engineering",
+    "Transformer block"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 10 · Transformer block</strong></p>\n<p>A pre-norm block applies normalization before each sublayer and preserves a residual path. This deliberately small block uses identity Q/K/V projections and a same-width ReLU feedforward sublayer.</p><h3>Build it</h3><p>For each token: u = x + causal_attention(norm(x)); then y = u + ReLU(norm(u)). Q, K, and V are all the normalized token vectors. Return all y vectors. Input is a nonempty matrix of positive width.</p>\n<p><strong>Contract:</strong> Implement <code>block</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> tokens = [[1, 0], [0, 1], [1, 1]]\n<strong>Expected:</strong> [[2.9999777783259067, -0.9999800005999799], [-0.8883558715100569, 2.8883532775295273], [1.0, 1.0]]</pre><pre><strong>Input:</strong> tokens = [[2, -2]]\n<strong>Expected:</strong> [[3.999998194446788, -2.9999987500023435]]</pre><details><summary>Hint</summary><p>Compute every attention output from the original normalized sequence before applying the second residual.</p></details>\n<h3>Review your understanding</h3><p>Trace the two residual paths. Which learned projections and parameters would you add to make a full model block?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def block(self, tokens: list[list[float]]) -> list[list[float]]:\n        normalized=[norm(row) for row in tokens]\n        residual=[]\n        for i,row in enumerate(tokens):\n            attended=attend(normalized[i],normalized[:i+1],normalized[:i+1])\n            residual.append([a+b for a,b in zip(row,attended)])\n        return [[a+max(0,b) for a,b in zip(row,norm(row))] for row in residual]\n"
+  },
+  "starters": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def block(self, tokens: list[list[float]]) -> list[list[float]]:\n        # For each token: u = x + causal_attention(norm(x)); then y = u + ReLU(norm(u))\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "tokens = [[1, 0], [0, 1], [1, 1]]",
+      "output": "[[2.9999777783259067, -0.9999800005999799], [-0.8883558715100569, 2.8883532775295273], [1.0, 1.0]]",
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          2.9999777783259067,
+          -0.9999800005999799
+        ],
+        [
+          -0.8883558715100569,
+          2.8883532775295273
+        ],
+        [
+          1.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "input": "tokens = [[2, -2]]",
+      "output": "[[3.999998194446788, -2.9999987500023435]]",
+      "args": [
+        [
+          [
+            2,
+            -2
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          3.999998194446788,
+          -2.9999987500023435
+        ]
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

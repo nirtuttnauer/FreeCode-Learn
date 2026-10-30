@@ -1,0 +1,117 @@
+{
+  "id": -1007,
+  "title": "Split and combine attention heads",
+  "slug": "llm-7",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "LLM engineering",
+    "Attention"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 7 · Attention</strong></p>\n<p>Multiple attention heads operate on different feature slices, then concatenate their outputs. This exercise begins after Q/K/V projection and ends before the output projection.</p><h3>Build it</h3><p>Compute causal attention independently for each contiguous feature slice and concatenate in head order. All matrices share a positive width divisible by heads; heads is positive.</p>\n<p><strong>Contract:</strong> Implement <code>multihead</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> q = [[1, 0, 0, 1], [0, 1, 1, 0]], k = [[1, 0, 0, 1], [0, 1, 1, 0]], v = [[1, 2, 3, 4], [5, 6, 7, 8]], heads = 2\n<strong>Expected:</strong> [[1.0, 2.0, 3.0, 4.0], [3.6790461973066275, 4.6790461973066275, 5.6790461973066275, 6.6790461973066275]]</pre><pre><strong>Input:</strong> q = [[1, 2]], k = [[2, 1]], v = [[3, 4]], heads = 1\n<strong>Expected:</strong> [[3.0, 4.0]]</pre><details><summary>Hint</summary><p>The scale for each head uses head width, not the full model width.</p></details>\n<h3>Review your understanding</h3><p>Why are learned Q/K/V and output projections still needed around this operation?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def multihead(self, q: list[list[float]], k: list[list[float]], v: list[list[float]], heads: int) -> list[list[float]]:\n        width=len(q[0])//heads\n        result=[]\n        for i,row in enumerate(q):\n            output=[]\n            for h in range(heads):\n                lo,hi=h*width,(h+1)*width\n                output.extend(attend(row[lo:hi],[r[lo:hi] for r in k[:i+1]],[r[lo:hi] for r in v[:i+1]]))\n            result.append(output)\n        return result\n"
+  },
+  "starters": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def multihead(self, q: list[list[float]], k: list[list[float]], v: list[list[float]], heads: int) -> list[list[float]]:\n        # Compute causal attention independently for each contiguous feature slice and concatenate in head order\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "q = [[1, 0, 0, 1], [0, 1, 1, 0]], k = [[1, 0, 0, 1], [0, 1, 1, 0]], v = [[1, 2, 3, 4], [5, 6, 7, 8]], heads = 2",
+      "output": "[[1.0, 2.0, 3.0, 4.0], [3.6790461973066275, 4.6790461973066275, 5.6790461973066275, 6.6790461973066275]]",
+      "args": [
+        [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            2,
+            3,
+            4
+          ],
+          [
+            5,
+            6,
+            7,
+            8
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        [
+          1.0,
+          2.0,
+          3.0,
+          4.0
+        ],
+        [
+          3.6790461973066275,
+          4.6790461973066275,
+          5.6790461973066275,
+          6.6790461973066275
+        ]
+      ]
+    },
+    {
+      "input": "q = [[1, 2]], k = [[2, 1]], v = [[3, 4]], heads = 1",
+      "output": "[[3.0, 4.0]]",
+      "args": [
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            2,
+            1
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ]
+        ],
+        1
+      ],
+      "expected": [
+        [
+          3.0,
+          4.0
+        ]
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

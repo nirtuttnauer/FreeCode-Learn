@@ -1,0 +1,85 @@
+{
+  "id": -2003,
+  "title": "Implement LRU cache eviction",
+  "slug": "systems-3",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "System design",
+    "Caching and admission"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 3 · Caching and admission</strong></p>\n<p>An LRU cache evicts the least recently accessed key. Reads and updates refresh recency; misses do not. This local cache has no TTL, concurrency, replication, or persistence.</p><h3>Build it</h3><p>Simulate put(key,value) and get(key) operations. Return one result per get, using None for misses. capacity is a nonnegative integer; values are integers. Do not mutate operations.</p>\n<p><strong>Contract:</strong> Implement <code>lru</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> capacity = 2, operations = [[&quot;put&quot;, &quot;a&quot;, 1], [&quot;put&quot;, &quot;b&quot;, 2], [&quot;get&quot;, &quot;a&quot;], [&quot;put&quot;, &quot;c&quot;, 3], [&quot;get&quot;, &quot;b&quot;], [&quot;get&quot;, &quot;c&quot;]]\n<strong>Expected:</strong> [1, null, 3]</pre><pre><strong>Input:</strong> capacity = 0, operations = [[&quot;put&quot;, &quot;x&quot;, 7], [&quot;get&quot;, &quot;x&quot;]]\n<strong>Expected:</strong> [null]</pre><details><summary>Hint</summary><p>OrderedDict supports moving a key to the newest end and removing the oldest item.</p></details>\n<h3>Review your understanding</h3><p>What happens with a hot key, stale values, a cache stampede, or a process restart?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "from collections import OrderedDict\n\nclass Solution:\n    def lru(self, capacity: int, operations: list[list]) -> list:\n        cache=OrderedDict()\n        outputs=[]\n        for op in operations:\n            if op[0]==\"put\":\n                cache[op[1]]=op[2]\n                cache.move_to_end(op[1])\n                if len(cache)>capacity:cache.popitem(last=False)\n            else:\n                outputs.append(cache.get(op[1]))\n                if op[1] in cache:cache.move_to_end(op[1])\n        return outputs\n"
+  },
+  "starters": {
+    "python": "from collections import OrderedDict\n\nclass Solution:\n    def lru(self, capacity: int, operations: list[list]) -> list:\n        # Simulate put(key,value) and get(key) operations\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "capacity = 2, operations = [[\"put\", \"a\", 1], [\"put\", \"b\", 2], [\"get\", \"a\"], [\"put\", \"c\", 3], [\"get\", \"b\"], [\"get\", \"c\"]]",
+      "output": "[1, null, 3]",
+      "args": [
+        2,
+        [
+          [
+            "put",
+            "a",
+            1
+          ],
+          [
+            "put",
+            "b",
+            2
+          ],
+          [
+            "get",
+            "a"
+          ],
+          [
+            "put",
+            "c",
+            3
+          ],
+          [
+            "get",
+            "b"
+          ],
+          [
+            "get",
+            "c"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        null,
+        3
+      ]
+    },
+    {
+      "input": "capacity = 0, operations = [[\"put\", \"x\", 7], [\"get\", \"x\"]]",
+      "output": "[null]",
+      "args": [
+        0,
+        [
+          [
+            "put",
+            "x",
+            7
+          ],
+          [
+            "get",
+            "x"
+          ]
+        ]
+      ],
+      "expected": [
+        null
+      ]
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

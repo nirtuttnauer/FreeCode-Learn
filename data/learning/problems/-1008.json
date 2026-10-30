@@ -1,0 +1,70 @@
+{
+  "id": -1008,
+  "title": "Normalize each token vector",
+  "slug": "llm-8",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "Transformer block"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 8 · Transformer block</strong></p>\n<p>Layer normalization centers and rescales a token’s features. It uses population variance across features. This exercise omits the learned scale and bias.</p><h3>Build it</h3><p>Return (x − mean) / sqrt(population_variance + eps). x is nonempty and eps is positive.</p>\n<p><strong>Contract:</strong> Implement <code>normalize</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> x = [1, 2, 3], eps = 1e-05\n<strong>Expected:</strong> [-1.2247356859083902, 0.0, 1.2247356859083902]</pre><pre><strong>Input:</strong> x = [5, 5], eps = 1e-05\n<strong>Expected:</strong> [0.0, 0.0]</pre><details><summary>Hint</summary><p>Divide the squared deviations by the number of features, not n−1.</p></details>\n<h3>Review your understanding</h3><p>Why does the constant-vector case require epsilon?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\nclass Solution:\n    def normalize(self, x: list[float], eps: float) -> list[float]:\n        mean=sum(x)/len(x)\n        variance=sum((v-mean)**2 for v in x)/len(x)\n        return [(v-mean)/math.sqrt(variance+eps) for v in x]\n"
+  },
+  "starters": {
+    "python": "import math\n\nclass Solution:\n    def normalize(self, x: list[float], eps: float) -> list[float]:\n        # Return (x − mean) / sqrt(population_variance + eps)\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "x = [1, 2, 3], eps = 1e-05",
+      "output": "[-1.2247356859083902, 0.0, 1.2247356859083902]",
+      "args": [
+        [
+          1,
+          2,
+          3
+        ],
+        1e-05
+      ],
+      "expected": [
+        -1.2247356859083902,
+        0.0,
+        1.2247356859083902
+      ]
+    },
+    {
+      "input": "x = [5, 5], eps = 1e-05",
+      "output": "[0.0, 0.0]",
+      "args": [
+        [
+          5,
+          5
+        ],
+        1e-05
+      ],
+      "expected": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "x = [-2, 2], eps = 1e-05",
+      "output": "[-0.9999987500023437, 0.9999987500023437]",
+      "args": [
+        [
+          -2,
+          2
+        ],
+        1e-05
+      ],
+      "expected": [
+        -0.9999987500023437,
+        0.9999987500023437
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

@@ -1,0 +1,97 @@
+{
+  "id": -2010,
+  "title": "Implement a circuit-breaker state machine",
+  "slug": "systems-10",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "System design",
+    "Failure control"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 10 · Failure control</strong></p>\n<p>A circuit breaker stops calling a failing dependency for a cooldown, then permits a recovery probe. Here calls complete synchronously before the next event, so only one probe is in flight. Production concurrency requires an atomic half-open probe permit.</p><h3>Build it</h3><p>Return whether each [time,success] call is permitted. Closed opens after threshold consecutive failures; a successful call resets that count. Open rejects calls until time ≥ open_until. The first permitted probe closes on success or reopens for another cooldown on failure. Ignore outcomes of rejected events. Times are nondecreasing; threshold and cooldown are positive.</p>\n<p><strong>Contract:</strong> Implement <code>circuit</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> events = [[0, false], [1, false], [2, true], [6, false], [7, true], [11, true], [12, true]], threshold = 2, cooldown = 5\n<strong>Expected:</strong> [true, true, false, true, false, true, true]</pre><pre><strong>Input:</strong> events = [[0, false], [1, true], [2, false]], threshold = 1, cooldown = 1\n<strong>Expected:</strong> [true, true, true]</pre><details><summary>Hint</summary><p>Distinguish an ordinary closed-state failure from a failed half-open probe.</p></details>\n<h3>Review your understanding</h3><p>How would multiple processes coordinate the half-open permit? When is a breaker worse than a strict timeout and concurrency limit?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def circuit(self, events: list[list], threshold: int, cooldown: float) -> list[bool]:\n        failures=0\n        open_until=None\n        allowed=[]\n        for now,success in events:\n            if open_until is not None and now<open_until:\n                allowed.append(False)\n                continue\n            probe=open_until is not None\n            allowed.append(True)\n            if success:\n                failures=0\n                open_until=None\n            elif probe:\n                open_until=now+cooldown\n            else:\n                failures+=1\n                if failures>=threshold:open_until=now+cooldown\n        return allowed\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def circuit(self, events: list[list], threshold: int, cooldown: float) -> list[bool]:\n        # Return whether each [time,success] call is permitted\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "events = [[0, false], [1, false], [2, true], [6, false], [7, true], [11, true], [12, true]], threshold = 2, cooldown = 5",
+      "output": "[true, true, false, true, false, true, true]",
+      "args": [
+        [
+          [
+            0,
+            false
+          ],
+          [
+            1,
+            false
+          ],
+          [
+            2,
+            true
+          ],
+          [
+            6,
+            false
+          ],
+          [
+            7,
+            true
+          ],
+          [
+            11,
+            true
+          ],
+          [
+            12,
+            true
+          ]
+        ],
+        2,
+        5
+      ],
+      "expected": [
+        true,
+        true,
+        false,
+        true,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "input": "events = [[0, false], [1, true], [2, false]], threshold = 1, cooldown = 1",
+      "output": "[true, true, true]",
+      "args": [
+        [
+          [
+            0,
+            false
+          ],
+          [
+            1,
+            true
+          ],
+          [
+            2,
+            false
+          ]
+        ],
+        1,
+        1
+      ],
+      "expected": [
+        true,
+        true,
+        true
+      ]
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

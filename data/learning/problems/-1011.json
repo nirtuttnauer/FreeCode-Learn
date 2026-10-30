@@ -1,0 +1,97 @@
+{
+  "id": -1011,
+  "title": "Take one language-model SGD step",
+  "slug": "llm-11",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "LLM engineering",
+    "Train and generate"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 11 · Train and generate</strong></p>\n<p>A bigram model learns a next-token distribution conditioned on one previous token. It isolates the language-model loss and optimizer before adding transformer backpropagation. For softmax cross entropy the logit gradient is p − one_hot(target).</p><h3>Build it</h3><p>Return a new logit table after one full-batch SGD step. Average gradients over all nonempty training pairs, including repeated previous-token rows. Compute all probabilities from the original table, then update once. rate is positive; IDs are valid.</p>\n<p><strong>Contract:</strong> Implement <code>train_step</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> logits = [[0, 0], [0, 0]], pairs = [[0, 1], [1, 0]], rate = 0.2\n<strong>Expected:</strong> [[-0.05, 0.05], [0.05, -0.05]]</pre><pre><strong>Input:</strong> logits = [[1, 0], [0, 1]], pairs = [[0, 1], [0, 1]], rate = 0.1\n<strong>Expected:</strong> [[0.9268941421369995, 0.07310585786300049], [0.0, 1.0]]</pre><details><summary>Hint</summary><p>Accumulate a gradient table first. Updating after every pair would implement a different optimizer step.</p></details>\n<h3>Review your understanding</h3><p>Why does this train only a bigram model? What extra derivatives and saved activations does transformer training require?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def train_step(self, logits: list[list[float]], pairs: list[list[int]], rate: float) -> list[list[float]]:\n        gradient=[[0.0]*len(logits[0]) for _ in logits]\n        for previous,target in pairs:\n            probabilities=softmax(logits[previous])\n            for j,p in enumerate(probabilities):\n                gradient[previous][j]+=(p-(1 if j==target else 0))/len(pairs)\n        return [[v-rate*g for v,g in zip(row,grad)] for row,grad in zip(logits,gradient)]\n"
+  },
+  "starters": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def train_step(self, logits: list[list[float]], pairs: list[list[int]], rate: float) -> list[list[float]]:\n        # Return a new logit table after one full-batch SGD step\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "logits = [[0, 0], [0, 0]], pairs = [[0, 1], [1, 0]], rate = 0.2",
+      "output": "[[-0.05, 0.05], [0.05, -0.05]]",
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        0.2
+      ],
+      "expected": [
+        [
+          -0.05,
+          0.05
+        ],
+        [
+          0.05,
+          -0.05
+        ]
+      ]
+    },
+    {
+      "input": "logits = [[1, 0], [0, 1]], pairs = [[0, 1], [0, 1]], rate = 0.1",
+      "output": "[[0.9268941421369995, 0.07310585786300049], [0.0, 1.0]]",
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        0.1
+      ],
+      "expected": [
+        [
+          0.9268941421369995,
+          0.07310585786300049
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

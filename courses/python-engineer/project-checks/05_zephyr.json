@@ -1,0 +1,21 @@
+{
+  "1": [
+    "test_acceptance.py::TestBasics"
+  ],
+  "2": [
+    "test_acceptance.py::TestRouting"
+  ],
+  "3": [
+    "test_acceptance.py::TestParameterBinding"
+  ],
+  "4": [
+    "test_acceptance.py::TestDependencies"
+  ],
+  "5": [
+    "test_acceptance.py::TestExceptionHandling",
+    "test_milestones.py::TestMilestone5"
+  ],
+  "6": [
+    "test_milestones.py::TestMilestone6"
+  ]
+}

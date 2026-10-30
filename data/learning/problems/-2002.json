@@ -1,0 +1,65 @@
+{
+  "id": -2002,
+  "title": "Place keys on a consistent-hash ring",
+  "slug": "systems-2",
+  "url": "",
+  "difficulty": "Easy",
+  "tags": [
+    "System design",
+    "Capacity and placement"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 2 · Capacity and placement</strong></p>\n<p>Consistent hashing maps a key to its clockwise successor on a ring. The numeric positions here are already hashed. A real system also needs stable hashing, virtual nodes, replication, and migration planning.</p><h3>Build it</h3><p>For each key position return the first node position ≥ key, wrapping to the smallest node when necessary. Node positions are distinct, nonempty, and in [0,99]; keys are also in that range.</p>\n<p><strong>Contract:</strong> Implement <code>route</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> nodes = [10, 40, 90], keys = [0, 10, 11, 90, 99]\n<strong>Expected:</strong> [10, 10, 40, 90, 10]</pre><pre><strong>Input:</strong> nodes = [50], keys = [1, 99]\n<strong>Expected:</strong> [50, 50]</pre><details><summary>Hint</summary><p>Sort the nodes, use a lower-bound search, then wrap the resulting index.</p></details>\n<h3>Review your understanding</h3><p>Add a node at position 30 to [10,40,90]. Which key interval moves, and why are virtual nodes useful?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import bisect\n\nclass Solution:\n    def route(self, nodes: list[int], keys: list[int]) -> list[int]:\n        ring=sorted(nodes)\n        return [ring[bisect.bisect_left(ring,key)%len(ring)] for key in keys]\n"
+  },
+  "starters": {
+    "python": "import bisect\n\nclass Solution:\n    def route(self, nodes: list[int], keys: list[int]) -> list[int]:\n        # For each key position return the first node position ≥ key, wrapping to the smallest node when necessary\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "nodes = [10, 40, 90], keys = [0, 10, 11, 90, 99]",
+      "output": "[10, 10, 40, 90, 10]",
+      "args": [
+        [
+          10,
+          40,
+          90
+        ],
+        [
+          0,
+          10,
+          11,
+          90,
+          99
+        ]
+      ],
+      "expected": [
+        10,
+        10,
+        40,
+        90,
+        10
+      ]
+    },
+    {
+      "input": "nodes = [50], keys = [1, 99]",
+      "output": "[50, 50]",
+      "args": [
+        [
+          50
+        ],
+        [
+          1,
+          99
+        ]
+      ],
+      "expected": [
+        50,
+        50
+      ]
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

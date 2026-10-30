@@ -1,0 +1,104 @@
+{
+  "id": -2011,
+  "title": "Implement stable keyset pagination",
+  "slug": "systems-11",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "System design",
+    "Service design"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 11 · Service design</strong></p>\n<p>Keyset pagination uses a stable ordered cursor instead of skipping an offset. A unique tie-breaker prevents equal timestamps from hiding or repeating records. It still needs explicit semantics for inserts, deletes, and snapshots.</p><h3>Build it</h3><p>Rows are [created_timestamp,unique_id]. Return at most size rows sorted by this pair and strictly after the cursor pair. An empty after means the first page. IDs are unique and size is nonnegative.</p>\n<p><strong>Contract:</strong> Implement <code>page</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> rows = [[10, 2], [10, 1], [11, 3], [12, 4]], after = [10, 1], size = 2\n<strong>Expected:</strong> [[10, 2], [11, 3]]</pre><pre><strong>Input:</strong> rows = [[1, 1], [1, 2]], after = [], size = 1\n<strong>Expected:</strong> [[1, 1]]</pre><details><summary>Hint</summary><p>Use lexicographic ordering on the complete pair, not only the timestamp.</p></details>\n<h3>Review your understanding</h3><p>Which index supports this query? What consistency guarantees can you promise when rows change between page requests?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def page(self, rows: list[list[int]], after: list[int], size: int) -> list[list[int]]:\n        return [row for row in sorted(rows) if not after or tuple(row)>tuple(after)][:size]\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def page(self, rows: list[list[int]], after: list[int], size: int) -> list[list[int]]:\n        # Rows are [created_timestamp,unique_id]\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "rows = [[10, 2], [10, 1], [11, 3], [12, 4]], after = [10, 1], size = 2",
+      "output": "[[10, 2], [11, 3]]",
+      "args": [
+        [
+          [
+            10,
+            2
+          ],
+          [
+            10,
+            1
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            12,
+            4
+          ]
+        ],
+        [
+          10,
+          1
+        ],
+        2
+      ],
+      "expected": [
+        [
+          10,
+          2
+        ],
+        [
+          11,
+          3
+        ]
+      ]
+    },
+    {
+      "input": "rows = [[1, 1], [1, 2]], after = [], size = 1",
+      "output": "[[1, 1]]",
+      "args": [
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [],
+        1
+      ],
+      "expected": [
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "input": "rows = [[1, 1]], after = [2, 2], size = 3",
+      "output": "[]",
+      "args": [
+        [
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          2,
+          2
+        ],
+        3
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

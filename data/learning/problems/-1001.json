@@ -1,0 +1,72 @@
+{
+  "id": -1001,
+  "title": "Build a reversible byte tokenizer",
+  "slug": "llm-1",
+  "url": "",
+  "difficulty": "Easy",
+  "tags": [
+    "LLM engineering",
+    "Represent text"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Track map</strong></p><img alt=\"Text → IDs → Embeddings → Causal attention → Block → logits → Next token\" src=\"offline://assets/b47e9aceb2fa30f735b2e3b5.svg\"><p><strong>Step 1 · Represent text</strong></p>\n<p>A model consumes token IDs. Start with a tokenizer whose vocabulary is exactly the 256 byte values. UTF-8 makes the mapping reversible across languages; a character may become several bytes. This is a byte baseline, not BPE.</p><h3>Build it</h3><p>Return the UTF-8 byte values of text as integers from 0 to 255. Empty text produces an empty list.</p>\n<p><strong>Contract:</strong> Implement <code>tokenize</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> text = &quot;hello&quot;\n<strong>Expected:</strong> [104, 101, 108, 108, 111]</pre><pre><strong>Input:</strong> text = &quot;café&quot;\n<strong>Expected:</strong> [99, 97, 102, 195, 169]</pre><details><summary>Hint</summary><p>Python can encode text to bytes; iterating over bytes yields integers.</p></details>\n<h3>Review your understanding</h3><p>How would you decode the result? Why do production tokenizers often group bytes into subword tokens?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def tokenize(self, text: str) -> list[int]:\n        return list(text.encode(\"utf-8\"))\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def tokenize(self, text: str) -> list[int]:\n        # Return the UTF-8 byte values of text as integers from 0 to 255\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "text = \"hello\"",
+      "output": "[104, 101, 108, 108, 111]",
+      "args": [
+        "hello"
+      ],
+      "expected": [
+        104,
+        101,
+        108,
+        108,
+        111
+      ]
+    },
+    {
+      "input": "text = \"café\"",
+      "output": "[99, 97, 102, 195, 169]",
+      "args": [
+        "café"
+      ],
+      "expected": [
+        99,
+        97,
+        102,
+        195,
+        169
+      ]
+    },
+    {
+      "input": "text = \"🤖\"",
+      "output": "[240, 159, 164, 150]",
+      "args": [
+        "🤖"
+      ],
+      "expected": [
+        240,
+        159,
+        164,
+        150
+      ]
+    },
+    {
+      "input": "text = \"\"",
+      "output": "[]",
+      "args": [
+        ""
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

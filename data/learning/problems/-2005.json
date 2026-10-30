@@ -1,0 +1,63 @@
+{
+  "id": -2005,
+  "title": "Enforce a sliding-window limit",
+  "slug": "systems-5",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "System design",
+    "Caching and admission"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 5 · Caching and admission</strong></p>\n<p>A sliding-window limiter counts accepted requests in (now − duration, now]. The lower boundary is excluded. Recording rejected requests would create a different policy.</p><h3>Build it</h3><p>Return an allow/deny result per nondecreasing timestamp. Keep at most limit accepted requests within the window. duration is positive; limit is nonnegative.</p>\n<p><strong>Contract:</strong> Implement <code>window</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> times = [0, 0.1, 0.2, 1, 1.1], duration = 1, limit = 2\n<strong>Expected:</strong> [true, true, false, true, true]</pre><pre><strong>Input:</strong> times = [0, 0, 0], duration = 5, limit = 0\n<strong>Expected:</strong> [false, false, false]</pre><details><summary>Hint</summary><p>Expire timestamps at or before now−duration before deciding whether to admit the next request.</p></details>\n<h3>Review your understanding</h3><p>Compare token-bucket bursts, fixed-window boundary spikes, and sliding-window storage costs.</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "from collections import deque\n\nclass Solution:\n    def window(self, times: list[float], duration: float, limit: int) -> list[bool]:\n        accepted=deque()\n        result=[]\n        for now in times:\n            while accepted and accepted[0]<=now-duration:accepted.popleft()\n            ok=len(accepted)<limit\n            if ok:accepted.append(now)\n            result.append(ok)\n        return result\n"
+  },
+  "starters": {
+    "python": "from collections import deque\n\nclass Solution:\n    def window(self, times: list[float], duration: float, limit: int) -> list[bool]:\n        # Return an allow/deny result per nondecreasing timestamp\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "times = [0, 0.1, 0.2, 1, 1.1], duration = 1, limit = 2",
+      "output": "[true, true, false, true, true]",
+      "args": [
+        [
+          0,
+          0.1,
+          0.2,
+          1,
+          1.1
+        ],
+        1,
+        2
+      ],
+      "expected": [
+        true,
+        true,
+        false,
+        true,
+        true
+      ]
+    },
+    {
+      "input": "times = [0, 0, 0], duration = 5, limit = 0",
+      "output": "[false, false, false]",
+      "args": [
+        [
+          0,
+          0,
+          0
+        ],
+        5,
+        0
+      ],
+      "expected": [
+        false,
+        false,
+        false
+      ]
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

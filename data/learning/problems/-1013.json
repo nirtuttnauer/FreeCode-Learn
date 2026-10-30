@@ -1,0 +1,109 @@
+{
+  "id": -1013,
+  "title": "Bound an inference KV cache",
+  "slug": "llm-13",
+  "url": "",
+  "difficulty": "Easy",
+  "tags": [
+    "LLM engineering",
+    "LLM engineering"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 13 · LLM engineering</strong></p>\n<p>A decoding cache stores projected keys and values so previous projections need not be recomputed. Keys and values must stay aligned. A sliding cache also changes the attention context and requires careful position handling in a full model.</p><h3>Build it</h3><p>Append the new key/value rows, retain only the latest limit positions, and return [keys, values] as copied rows. Old and new key/value counts match; limit is positive.</p>\n<p><strong>Contract:</strong> Implement <code>cache</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> keys = [[1]], values = [[10]], new_keys = [[2], [3]], new_values = [[20], [30]], limit = 2\n<strong>Expected:</strong> [[[2], [3]], [[20], [30]]]</pre><pre><strong>Input:</strong> keys = [], values = [], new_keys = [[1, 2]], new_values = [[3, 4]], limit = 4\n<strong>Expected:</strong> [[[1, 2]], [[3, 4]]]</pre><details><summary>Hint</summary><p>Concatenate before keeping the final limit elements. Apply exactly the same slice to keys and values.</p></details>\n<h3>Review your understanding</h3><p>Estimate KV memory for layers × heads × cached tokens × head width × bytes × two tensors. What changes with grouped-query attention?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def cache(self, keys: list[list[float]], values: list[list[float]], new_keys: list[list[float]], new_values: list[list[float]], limit: int) -> list:\n        return [[list(row) for row in (keys+new_keys)[-limit:]],[list(row) for row in (values+new_values)[-limit:]]]\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def cache(self, keys: list[list[float]], values: list[list[float]], new_keys: list[list[float]], new_values: list[list[float]], limit: int) -> list:\n        # Append the new key/value rows, retain only the latest limit positions, and return [keys, values] as copied rows\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "keys = [[1]], values = [[10]], new_keys = [[2], [3]], new_values = [[20], [30]], limit = 2",
+      "output": "[[[2], [3]], [[20], [30]]]",
+      "args": [
+        [
+          [
+            1
+          ]
+        ],
+        [
+          [
+            10
+          ]
+        ],
+        [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          [
+            20
+          ],
+          [
+            30
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          [
+            20
+          ],
+          [
+            30
+          ]
+        ]
+      ]
+    },
+    {
+      "input": "keys = [], values = [], new_keys = [[1, 2]], new_values = [[3, 4]], limit = 4",
+      "output": "[[[1, 2]], [[3, 4]]]",
+      "args": [
+        [],
+        [],
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ]
+        ],
+        4
+      ],
+      "expected": [
+        [
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            3,
+            4
+          ]
+        ]
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

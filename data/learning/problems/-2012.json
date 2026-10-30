@@ -1,0 +1,66 @@
+{
+  "id": -2012,
+  "title": "Build a URL-shortener service core",
+  "slug": "systems-12",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "System design",
+    "Service design"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 12 · Service design</strong></p>\n<p>The service core maps a long URL to a stable short code and resolves codes back to URLs. This exercise fixes an in-memory, single-process contract so you can test behavior before designing the distributed system.</p><h3>Build it</h3><p>Process POST(url) and GET(code), returning one response per request. First-seen URLs receive base-62 sequential IDs starting at 1 with alphabet 0–9, a–z, A–Z. Repeated URLs reuse their code; unknown codes return None. Valid requests use only POST/GET and nonempty strings.</p>\n<p><strong>Contract:</strong> Implement <code>shortener</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> requests = [[&quot;POST&quot;, &quot;https://a.example&quot;], [&quot;POST&quot;, &quot;https://b.example&quot;], [&quot;POST&quot;, &quot;https://a.example&quot;], [&quot;GET&quot;, &quot;1&quot;], [&quot;GET&quot;, &quot;missing&quot;]]\n<strong>Expected:</strong> [&quot;1&quot;, &quot;2&quot;, &quot;1&quot;, &quot;https://a.example&quot;, null]</pre><pre><strong>Input:</strong> requests = []\n<strong>Expected:</strong> []</pre><details><summary>Hint</summary><p>Maintain forward and reverse maps. Allocate only for a new URL.</p></details>\n<h3>Review your understanding</h3><p>Write a design in Notes: estimate traffic and storage; choose ID allocation, schema and indexes; add caching, replication, expiry, abuse controls, observability, and a failure policy. Compare a globally sequential ID with range allocation or random IDs. Local tests assess this core only, not the architecture.</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def shortener(self, requests: list[list[str]]) -> list:\n        alphabet=\"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ\"\n        by_url={}\n        by_code={}\n        responses=[]\n        def encode(n):\n            out=\"\"\n            while n:\n                out=alphabet[n%62]+out\n                n//=62\n            return out or \"0\"\n        for method,value in requests:\n            if method==\"POST\":\n                if value not in by_url:\n                    code=encode(len(by_url)+1)\n                    by_url[value]=code\n                    by_code[code]=value\n                responses.append(by_url[value])\n            else:responses.append(by_code.get(value))\n        return responses\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def shortener(self, requests: list[list[str]]) -> list:\n        # Process POST(url) and GET(code), returning one response per request\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "requests = [[\"POST\", \"https://a.example\"], [\"POST\", \"https://b.example\"], [\"POST\", \"https://a.example\"], [\"GET\", \"1\"], [\"GET\", \"missing\"]]",
+      "output": "[\"1\", \"2\", \"1\", \"https://a.example\", null]",
+      "args": [
+        [
+          [
+            "POST",
+            "https://a.example"
+          ],
+          [
+            "POST",
+            "https://b.example"
+          ],
+          [
+            "POST",
+            "https://a.example"
+          ],
+          [
+            "GET",
+            "1"
+          ],
+          [
+            "GET",
+            "missing"
+          ]
+        ]
+      ],
+      "expected": [
+        "1",
+        "2",
+        "1",
+        "https://a.example",
+        null
+      ]
+    },
+    {
+      "input": "requests = []",
+      "output": "[]",
+      "args": [
+        []
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

@@ -1,0 +1,76 @@
+{
+  "id": -1016,
+  "title": "Batch requests within a token budget",
+  "slug": "llm-16",
+  "url": "",
+  "difficulty": "Easy",
+  "tags": [
+    "LLM engineering",
+    "LLM engineering"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 16 · LLM engineering</strong></p>\n<p>A serving scheduler balances throughput, latency, and memory. Here the budget counts unpadded prompt tokens. Real padded attention, KV memory, output tokens, and continuous batching introduce additional costs.</p><h3>Build it</h3><p>Partition requests in arrival order into consecutive batches whose sum of lengths is at most budget. Fill each batch until the next request would overflow. Every length is positive and no larger than budget. Return original request indices; empty input returns [].</p>\n<p><strong>Contract:</strong> Implement <code>batch</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> lengths = [4, 3, 5, 2], budget = 7\n<strong>Expected:</strong> [[0, 1], [2, 3]]</pre><pre><strong>Input:</strong> lengths = [3, 3, 3], budget = 6\n<strong>Expected:</strong> [[0, 1], [2]]</pre><details><summary>Hint</summary><p>Flush the current batch before adding a request that would exceed the budget.</p></details>\n<h3>Review your understanding</h3><p>How would a very long request affect waiting time? What admission, fairness, and output-token limits would you add?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def batch(self, lengths: list[int], budget: int) -> list[list[int]]:\n        batches=[]\n        current=[]\n        used=0\n        for i,length in enumerate(lengths):\n            if current and used+length>budget:\n                batches.append(current)\n                current=[]\n                used=0\n            current.append(i)\n            used+=length\n        if current:batches.append(current)\n        return batches\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def batch(self, lengths: list[int], budget: int) -> list[list[int]]:\n        # Partition requests in arrival order into consecutive batches whose sum of lengths is at most budget\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "lengths = [4, 3, 5, 2], budget = 7",
+      "output": "[[0, 1], [2, 3]]",
+      "args": [
+        [
+          4,
+          3,
+          5,
+          2
+        ],
+        7
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    },
+    {
+      "input": "lengths = [3, 3, 3], budget = 6",
+      "output": "[[0, 1], [2]]",
+      "args": [
+        [
+          3,
+          3,
+          3
+        ],
+        6
+      ],
+      "expected": [
+        [
+          0,
+          1
+        ],
+        [
+          2
+        ]
+      ]
+    },
+    {
+      "input": "lengths = [], budget = 10",
+      "output": "[]",
+      "args": [
+        [],
+        10
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

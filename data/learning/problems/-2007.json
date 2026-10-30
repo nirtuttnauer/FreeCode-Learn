@@ -1,0 +1,63 @@
+{
+  "id": -2007,
+  "title": "Check quorum overlap constraints",
+  "slug": "systems-7",
+  "url": "",
+  "difficulty": "Easy",
+  "tags": [
+    "System design",
+    "Reliable writes"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 7 · Reliable writes</strong></p>\n<p>Quorum overlap is a building block: R+W>N ensures every read set overlaps every write set, and 2W>N ensures write sets overlap. These arithmetic constraints alone do not guarantee linearizability or resolve concurrent versions.</p><h3>Build it</h3><p>Return whether read/write counts are valid positive counts at most replicas and satisfy both overlap inequalities. replicas is positive.</p>\n<p><strong>Contract:</strong> Implement <code>overlap</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> replicas = 3, reads = 2, writes = 2\n<strong>Expected:</strong> true</pre><pre><strong>Input:</strong> replicas = 3, reads = 1, writes = 2\n<strong>Expected:</strong> false</pre><details><summary>Hint</summary><p>Validate counts first, then check both strict inequalities.</p></details>\n<h3>Review your understanding</h3><p>Why can sloppy quorums, conflicting versions, or membership changes invalidate a naive consistency claim?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def overlap(self, replicas: int, reads: int, writes: int) -> bool:\n        return 1<=reads<=replicas and 1<=writes<=replicas and reads+writes>replicas and 2*writes>replicas\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def overlap(self, replicas: int, reads: int, writes: int) -> bool:\n        # Return whether read/write counts are valid positive counts at most replicas and satisfy both overlap inequalities\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "replicas = 3, reads = 2, writes = 2",
+      "output": "true",
+      "args": [
+        3,
+        2,
+        2
+      ],
+      "expected": true
+    },
+    {
+      "input": "replicas = 3, reads = 1, writes = 2",
+      "output": "false",
+      "args": [
+        3,
+        1,
+        2
+      ],
+      "expected": false
+    },
+    {
+      "input": "replicas = 5, reads = 3, writes = 3",
+      "output": "true",
+      "args": [
+        5,
+        3,
+        3
+      ],
+      "expected": true
+    },
+    {
+      "input": "replicas = 3, reads = 4, writes = 2",
+      "output": "false",
+      "args": [
+        3,
+        4,
+        2
+      ],
+      "expected": false
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

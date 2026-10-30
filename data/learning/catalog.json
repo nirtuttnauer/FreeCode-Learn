@@ -1,0 +1,2543 @@
+[
+  {
+    "id": -1001,
+    "title": "Build a reversible byte tokenizer",
+    "slug": "llm-1",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Represent text"
+    ]
+  },
+  {
+    "id": -1002,
+    "title": "Look up token embeddings",
+    "slug": "llm-2",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Represent text"
+    ]
+  },
+  {
+    "id": -1003,
+    "title": "Implement numerically stable softmax",
+    "slug": "llm-3",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Probabilities and loss"
+    ]
+  },
+  {
+    "id": -1004,
+    "title": "Measure next-token cross entropy",
+    "slug": "llm-4",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Probabilities and loss"
+    ]
+  },
+  {
+    "id": -1005,
+    "title": "Implement scaled dot-product attention",
+    "slug": "llm-5",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Attention"
+    ]
+  },
+  {
+    "id": -1006,
+    "title": "Mask future tokens in causal attention",
+    "slug": "llm-6",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Attention"
+    ]
+  },
+  {
+    "id": -1007,
+    "title": "Split and combine attention heads",
+    "slug": "llm-7",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Attention"
+    ]
+  },
+  {
+    "id": -1008,
+    "title": "Normalize each token vector",
+    "slug": "llm-8",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Transformer block"
+    ]
+  },
+  {
+    "id": -1009,
+    "title": "Build the position-wise feedforward network",
+    "slug": "llm-9",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Transformer block"
+    ]
+  },
+  {
+    "id": -1010,
+    "title": "Assemble a pre-norm transformer block",
+    "slug": "llm-10",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Transformer block"
+    ]
+  },
+  {
+    "id": -1011,
+    "title": "Take one language-model SGD step",
+    "slug": "llm-11",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Train and generate"
+    ]
+  },
+  {
+    "id": -1012,
+    "title": "Generate tokens with a tiny transformer",
+    "slug": "llm-12",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "Train and generate"
+    ]
+  },
+  {
+    "id": -1013,
+    "title": "Bound an inference KV cache",
+    "slug": "llm-13",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "LLM engineering"
+    ]
+  },
+  {
+    "id": -1014,
+    "title": "Retrieve context by cosine similarity",
+    "slug": "llm-14",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "LLM engineering"
+    ]
+  },
+  {
+    "id": -1015,
+    "title": "Evaluate masked token perplexity",
+    "slug": "llm-15",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "LLM engineering"
+    ]
+  },
+  {
+    "id": -1016,
+    "title": "Batch requests within a token budget",
+    "slug": "llm-16",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "LLM engineering",
+      "LLM engineering"
+    ]
+  },
+  {
+    "id": -2001,
+    "title": "Estimate required service concurrency",
+    "slug": "systems-1",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Capacity and placement"
+    ]
+  },
+  {
+    "id": -2002,
+    "title": "Place keys on a consistent-hash ring",
+    "slug": "systems-2",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Capacity and placement"
+    ]
+  },
+  {
+    "id": -2003,
+    "title": "Implement LRU cache eviction",
+    "slug": "systems-3",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Caching and admission"
+    ]
+  },
+  {
+    "id": -2004,
+    "title": "Enforce a token-bucket limit",
+    "slug": "systems-4",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Caching and admission"
+    ]
+  },
+  {
+    "id": -2005,
+    "title": "Enforce a sliding-window limit",
+    "slug": "systems-5",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Caching and admission"
+    ]
+  },
+  {
+    "id": -2006,
+    "title": "Make retries idempotent",
+    "slug": "systems-6",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Reliable writes"
+    ]
+  },
+  {
+    "id": -2007,
+    "title": "Check quorum overlap constraints",
+    "slug": "systems-7",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Reliable writes"
+    ]
+  },
+  {
+    "id": -2008,
+    "title": "Model a queue visibility lease",
+    "slug": "systems-8",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Reliable writes"
+    ]
+  },
+  {
+    "id": -2009,
+    "title": "Schedule capped backoff with jitter",
+    "slug": "systems-9",
+    "difficulty": "Easy",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Failure control"
+    ]
+  },
+  {
+    "id": -2010,
+    "title": "Implement a circuit-breaker state machine",
+    "slug": "systems-10",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Failure control"
+    ]
+  },
+  {
+    "id": -2011,
+    "title": "Implement stable keyset pagination",
+    "slug": "systems-11",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Service design"
+    ]
+  },
+  {
+    "id": -2012,
+    "title": "Build a URL-shortener service core",
+    "slug": "systems-12",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "System design",
+      "Service design"
+    ]
+  },
+  {
+    "id": -3001,
+    "title": "chunked",
+    "slug": "python-01-chunked",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3002,
+    "title": "normalize whitespace",
+    "slug": "python-01-normalize_whitespace",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3003,
+    "title": "parse kv",
+    "slug": "python-01-parse_kv",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3004,
+    "title": "clamp",
+    "slug": "python-01-clamp",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3005,
+    "title": "snake to camel",
+    "slug": "python-01-snake_to_camel",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3006,
+    "title": "format row",
+    "slug": "python-01-format_row",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Core refresher: the object model, sequences, strings"
+    ]
+  },
+  {
+    "id": -3007,
+    "title": "group by",
+    "slug": "python-02-group_by",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3008,
+    "title": "top n words",
+    "slug": "python-02-top_n_words",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3009,
+    "title": "flatten",
+    "slug": "python-02-flatten",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3010,
+    "title": "dedupe",
+    "slug": "python-02-dedupe",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3011,
+    "title": "deep merge",
+    "slug": "python-02-deep_merge",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3012,
+    "title": "sliding max",
+    "slug": "python-02-sliding_max",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures, comprehensions, `collections`"
+    ]
+  },
+  {
+    "id": -3013,
+    "title": "compose",
+    "slug": "python-03-compose",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3014,
+    "title": "memoize",
+    "slug": "python-03-memoize",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3015,
+    "title": "make accumulator",
+    "slug": "python-03-make_accumulator",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3016,
+    "title": "append to",
+    "slug": "python-03-append_to",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3017,
+    "title": "retry",
+    "slug": "python-03-retry",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3018,
+    "title": "curry",
+    "slug": "python-03-curry",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Functions, closures, `functools`"
+    ]
+  },
+  {
+    "id": -3019,
+    "title": "Playlist",
+    "slug": "python-04-playlist",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3020,
+    "title": "InventoryItem",
+    "slug": "python-04-inventoryitem",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3021,
+    "title": "HighScore",
+    "slug": "python-04-highscore",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3022,
+    "title": "Percentage",
+    "slug": "python-04-percentage",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3023,
+    "title": "Employee",
+    "slug": "python-04-employee",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3024,
+    "title": "Person",
+    "slug": "python-04-person",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3025,
+    "title": "Shape",
+    "slug": "python-04-shape",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3026,
+    "title": "Circle",
+    "slug": "python-04-circle",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3027,
+    "title": "Square",
+    "slug": "python-04-square",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3028,
+    "title": "TagSet",
+    "slug": "python-04-tagset",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3029,
+    "title": "StepCounter",
+    "slug": "python-04-stepcounter",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3030,
+    "title": "Money",
+    "slug": "python-04-money",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3031,
+    "title": "Temperature",
+    "slug": "python-04-temperature",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3032,
+    "title": "CircularBuffer",
+    "slug": "python-04-circularbuffer",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3033,
+    "title": "CaseInsensitiveDict",
+    "slug": "python-04-caseinsensitivedict",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "OOP and the data model"
+    ]
+  },
+  {
+    "id": -3034,
+    "title": "Pipeline",
+    "slug": "python-04b-pipeline",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Dunder methods: the complete tour"
+    ]
+  },
+  {
+    "id": -3035,
+    "title": "FrozenBox",
+    "slug": "python-04b-frozenbox",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Dunder methods: the complete tour"
+    ]
+  },
+  {
+    "id": -3036,
+    "title": "CountingDict",
+    "slug": "python-04b-countingdict",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Dunder methods: the complete tour"
+    ]
+  },
+  {
+    "id": -3037,
+    "title": "Interval",
+    "slug": "python-04b-interval",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Dunder methods: the complete tour"
+    ]
+  },
+  {
+    "id": -3038,
+    "title": "Recorder",
+    "slug": "python-04b-recorder",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Dunder methods: the complete tour"
+    ]
+  },
+  {
+    "id": -3039,
+    "title": "RetryableError",
+    "slug": "python-05-retryableerror",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3040,
+    "title": "ValidationError",
+    "slug": "python-05-validationerror",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3041,
+    "title": "parse port",
+    "slug": "python-05-parse_port",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3042,
+    "title": "validate record",
+    "slug": "python-05-validate_record",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3043,
+    "title": "Timer",
+    "slug": "python-05-timer",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3044,
+    "title": "suppress and collect",
+    "slug": "python-05-suppress_and_collect",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3045,
+    "title": "atomic write",
+    "slug": "python-05-atomic_write",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Exceptions, context managers, resource management"
+    ]
+  },
+  {
+    "id": -3046,
+    "title": "sliding window",
+    "slug": "python-06-sliding_window",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3047,
+    "title": "interleave",
+    "slug": "python-06-interleave",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3048,
+    "title": "running average",
+    "slug": "python-06-running_average",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3049,
+    "title": "first",
+    "slug": "python-06-first",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3050,
+    "title": "unique everseen",
+    "slug": "python-06-unique_everseen",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3051,
+    "title": "tail",
+    "slug": "python-06-tail",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Iterators, generators, `itertools`"
+    ]
+  },
+  {
+    "id": -3052,
+    "title": "Stack",
+    "slug": "python-07-stack",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3053,
+    "title": "close all",
+    "slug": "python-07-close_all",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3054,
+    "title": "parse user",
+    "slug": "python-07-parse_user",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3055,
+    "title": "counted",
+    "slug": "python-07-counted",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3056,
+    "title": "is ok",
+    "slug": "python-07-is_ok",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3057,
+    "title": "unwrap or",
+    "slug": "python-07-unwrap_or",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3058,
+    "title": "map ok",
+    "slug": "python-07-map_ok",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Typing and static analysis"
+    ]
+  },
+  {
+    "id": -3059,
+    "title": "package version",
+    "slug": "python-08-package_version",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Modules, packaging, project tooling"
+    ]
+  },
+  {
+    "id": -3060,
+    "title": "load object",
+    "slug": "python-08-load_object",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Modules, packaging, project tooling"
+    ]
+  },
+  {
+    "id": -3061,
+    "title": "find project root",
+    "slug": "python-08-find_project_root",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Modules, packaging, project tooling"
+    ]
+  },
+  {
+    "id": -3062,
+    "title": "read dependencies",
+    "slug": "python-08-read_dependencies",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Modules, packaging, project tooling"
+    ]
+  },
+  {
+    "id": -3063,
+    "title": "lazy import",
+    "slug": "python-08-lazy_import",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Modules, packaging, project tooling"
+    ]
+  },
+  {
+    "id": -3064,
+    "title": "parse duration",
+    "slug": "python-09-parse_duration",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3065,
+    "title": "format duration",
+    "slug": "python-09-format_duration",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3066,
+    "title": "roman encode",
+    "slug": "python-09-roman_encode",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3067,
+    "title": "roman decode",
+    "slug": "python-09-roman_decode",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3068,
+    "title": "TokenBucket",
+    "slug": "python-09-tokenbucket",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3069,
+    "title": "retry with backoff",
+    "slug": "python-09-retry_with_backoff",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Testing with pytest"
+    ]
+  },
+  {
+    "id": -3070,
+    "title": "parallel map",
+    "slug": "python-10-parallel_map",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3071,
+    "title": "gather results",
+    "slug": "python-10-gather_results",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3072,
+    "title": "SafeCounter",
+    "slug": "python-10-safecounter",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3073,
+    "title": "run pipeline",
+    "slug": "python-10-run_pipeline",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3074,
+    "title": "Once",
+    "slug": "python-10-once",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3075,
+    "title": "process map",
+    "slug": "python-10-process_map",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Threads, processes, and the GIL"
+    ]
+  },
+  {
+    "id": -3076,
+    "title": "gather with concurrency",
+    "slug": "python-11-gather_with_concurrency",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "asyncio and structured concurrency"
+    ]
+  },
+  {
+    "id": -3077,
+    "title": "async retry",
+    "slug": "python-11-async_retry",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "asyncio and structured concurrency"
+    ]
+  },
+  {
+    "id": -3078,
+    "title": "run with timeout",
+    "slug": "python-11-run_with_timeout",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "asyncio and structured concurrency"
+    ]
+  },
+  {
+    "id": -3079,
+    "title": "async pipeline",
+    "slug": "python-11-async_pipeline",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "asyncio and structured concurrency"
+    ]
+  },
+  {
+    "id": -3080,
+    "title": "first completed",
+    "slug": "python-11-first_completed",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "asyncio and structured concurrency"
+    ]
+  },
+  {
+    "id": -3081,
+    "title": "Validated",
+    "slug": "python-12-validated",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Metaprogramming: descriptors, `__init_subclass__`, metaclasses"
+    ]
+  },
+  {
+    "id": -3082,
+    "title": "auto slots",
+    "slug": "python-12-auto_slots",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Metaprogramming: descriptors, `__init_subclass__`, metaclasses"
+    ]
+  },
+  {
+    "id": -3083,
+    "title": "call logger",
+    "slug": "python-12-call_logger",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Metaprogramming: descriptors, `__init_subclass__`, metaclasses"
+    ]
+  },
+  {
+    "id": -3084,
+    "title": "build model",
+    "slug": "python-12-build_model",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Metaprogramming: descriptors, `__init_subclass__`, metaclasses"
+    ]
+  },
+  {
+    "id": -3085,
+    "title": "count common",
+    "slug": "python-13-count_common",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3086,
+    "title": "join records",
+    "slug": "python-13-join_records",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3087,
+    "title": "build report",
+    "slug": "python-13-build_report",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3088,
+    "title": "top k",
+    "slug": "python-13-top_k",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3089,
+    "title": "deduplicate in order",
+    "slug": "python-13-deduplicate_in_order",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3090,
+    "title": "running maximum",
+    "slug": "python-13-running_maximum",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3091,
+    "title": "group totals",
+    "slug": "python-13-group_totals",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3092,
+    "title": "Inventory",
+    "slug": "python-13-inventory",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Performance and memory"
+    ]
+  },
+  {
+    "id": -3093,
+    "title": "Task",
+    "slug": "python-14-task",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Architecture: dependency inversion, patterns, plugin systems"
+    ]
+  },
+  {
+    "id": -3094,
+    "title": "InMemoryTasks",
+    "slug": "python-14-inmemorytasks",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Architecture: dependency inversion, patterns, plugin systems"
+    ]
+  },
+  {
+    "id": -3095,
+    "title": "TaskService",
+    "slug": "python-14-taskservice",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Architecture: dependency inversion, patterns, plugin systems"
+    ]
+  },
+  {
+    "id": -3096,
+    "title": "EventBus",
+    "slug": "python-14-eventbus",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Architecture: dependency inversion, patterns, plugin systems"
+    ]
+  },
+  {
+    "id": -3097,
+    "title": "render",
+    "slug": "python-14-render",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Architecture: dependency inversion, patterns, plugin systems"
+    ]
+  },
+  {
+    "id": -3098,
+    "title": "TaskNotFound",
+    "slug": "python-15-tasknotfound",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "FastAPI and pydantic"
+    ]
+  },
+  {
+    "id": -3099,
+    "title": "InMemoryTaskRepo",
+    "slug": "python-15-inmemorytaskrepo",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "FastAPI and pydantic"
+    ]
+  },
+  {
+    "id": -3100,
+    "title": "get repo",
+    "slug": "python-15-get_repo",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "FastAPI and pydantic"
+    ]
+  },
+  {
+    "id": -3101,
+    "title": "create app",
+    "slug": "python-15-create_app",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "FastAPI and pydantic"
+    ]
+  },
+  {
+    "id": -3102,
+    "title": "summarise errors",
+    "slug": "python-15-summarise_errors",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "FastAPI and pydantic"
+    ]
+  },
+  {
+    "id": -3103,
+    "title": "build environment",
+    "slug": "python-16-build_environment",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3104,
+    "title": "render string",
+    "slug": "python-16-render_string",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3105,
+    "title": "render invoice",
+    "slug": "python-16-render_invoice",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3106,
+    "title": "render page",
+    "slug": "python-16-render_page",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3107,
+    "title": "render badge",
+    "slug": "python-16-render_badge",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3108,
+    "title": "render untrusted",
+    "slug": "python-16-render_untrusted",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Jinja2: templating done properly"
+    ]
+  },
+  {
+    "id": -3109,
+    "title": "JsonLogFormatter",
+    "slug": "python-17-jsonlogformatter",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Observability: logging, metrics, tracing with OpenTelemetry"
+    ]
+  },
+  {
+    "id": -3110,
+    "title": "traced",
+    "slug": "python-17-traced",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Observability: logging, metrics, tracing with OpenTelemetry"
+    ]
+  },
+  {
+    "id": -3111,
+    "title": "process order",
+    "slug": "python-17-process_order",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Observability: logging, metrics, tracing with OpenTelemetry"
+    ]
+  },
+  {
+    "id": -3112,
+    "title": "RequestMetrics",
+    "slug": "python-17-requestmetrics",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Observability: logging, metrics, tracing with OpenTelemetry"
+    ]
+  },
+  {
+    "id": -3113,
+    "title": "extract trace context",
+    "slug": "python-17-extract_trace_context",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Observability: logging, metrics, tracing with OpenTelemetry"
+    ]
+  },
+  {
+    "id": -3114,
+    "title": "parse log line",
+    "slug": "python-18-parse_log_line",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3115,
+    "title": "find duplicated words",
+    "slug": "python-18-find_duplicated_words",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3116,
+    "title": "mask secrets",
+    "slug": "python-18-mask_secrets",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3117,
+    "title": "parse semver",
+    "slug": "python-18-parse_semver",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3118,
+    "title": "split sentences",
+    "slug": "python-18-split_sentences",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3119,
+    "title": "is redos safe",
+    "slug": "python-18-is_redos_safe",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Regular expressions"
+    ]
+  },
+  {
+    "id": -3120,
+    "title": "safe join",
+    "slug": "python-19-safe_join",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3121,
+    "title": "iter source files",
+    "slug": "python-19-iter_source_files",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3122,
+    "title": "parse timestamp",
+    "slug": "python-19-parse_timestamp",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3123,
+    "title": "load records",
+    "slug": "python-19-load_records",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3124,
+    "title": "canonical hash",
+    "slug": "python-19-canonical_hash",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3125,
+    "title": "build parser",
+    "slug": "python-19-build_parser",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3126,
+    "title": "main",
+    "slug": "python-19-main",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "The standard library toolkit"
+    ]
+  },
+  {
+    "id": -3127,
+    "title": "connect",
+    "slug": "python-20-connect",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3128,
+    "title": "add user",
+    "slug": "python-20-add_user",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3129,
+    "title": "add orders",
+    "slug": "python-20-add_orders",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3130,
+    "title": "find users",
+    "slug": "python-20-find_users",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3131,
+    "title": "user totals",
+    "slug": "python-20-user_totals",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3132,
+    "title": "transaction",
+    "slug": "python-20-transaction",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3133,
+    "title": "page orders",
+    "slug": "python-20-page_orders",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3134,
+    "title": "stream orders",
+    "slug": "python-20-stream_orders",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3135,
+    "title": "cents to decimal",
+    "slug": "python-20-cents_to_decimal",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Databases: SQL, `sqlite3`, and ORMs"
+    ]
+  },
+  {
+    "id": -3136,
+    "title": "ApiUnavailable",
+    "slug": "python-21-apiunavailable",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3137,
+    "title": "ApiClientError",
+    "slug": "python-21-apiclienterror",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3138,
+    "title": "build client",
+    "slug": "python-21-build_client",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3139,
+    "title": "fetch json",
+    "slug": "python-21-fetch_json",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3140,
+    "title": "request with retry",
+    "slug": "python-21-request_with_retry",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3141,
+    "title": "paginate",
+    "slug": "python-21-paginate",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3142,
+    "title": "fetch all",
+    "slug": "python-21-fetch_all",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3143,
+    "title": "stream lines",
+    "slug": "python-21-stream_lines",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "HTTP clients, APIs, and scraping"
+    ]
+  },
+  {
+    "id": -3144,
+    "title": "binary search",
+    "slug": "python-22-binary_search",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3145,
+    "title": "merge intervals",
+    "slug": "python-22-merge_intervals",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3146,
+    "title": "LRUCache",
+    "slug": "python-22-lrucache",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3147,
+    "title": "topological sort",
+    "slug": "python-22-topological_sort",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3148,
+    "title": "shortest paths",
+    "slug": "python-22-shortest_paths",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3149,
+    "title": "edit distance",
+    "slug": "python-22-edit_distance",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3150,
+    "title": "longest increasing subsequence",
+    "slug": "python-22-longest_increasing_subsequence",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Data structures and algorithms, in Python"
+    ]
+  },
+  {
+    "id": -3151,
+    "title": "normalize rows",
+    "slug": "python-23-normalize_rows",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3152,
+    "title": "moving average",
+    "slug": "python-23-moving_average",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3153,
+    "title": "one hot",
+    "slug": "python-23-one_hot",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3154,
+    "title": "pairwise distances",
+    "slug": "python-23-pairwise_distances",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3155,
+    "title": "top k indices",
+    "slug": "python-23-top_k_indices",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3156,
+    "title": "replace outliers",
+    "slug": "python-23-replace_outliers",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3157,
+    "title": "describe",
+    "slug": "python-23-describe",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "NumPy"
+    ]
+  },
+  {
+    "id": -3158,
+    "title": "clean orders",
+    "slug": "python-24-clean_orders",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3159,
+    "title": "revenue by month",
+    "slug": "python-24-revenue_by_month",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3160,
+    "title": "top customers",
+    "slug": "python-24-top_customers",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3161,
+    "title": "enrich with customers",
+    "slug": "python-24-enrich_with_customers",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3162,
+    "title": "add running total",
+    "slug": "python-24-add_running_total",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3163,
+    "title": "pivot region month",
+    "slug": "python-24-pivot_region_month",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3164,
+    "title": "flag anomalies",
+    "slug": "python-24-flag_anomalies",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "pandas"
+    ]
+  },
+  {
+    "id": -3165,
+    "title": "hash password",
+    "slug": "python-25-hash_password",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3166,
+    "title": "verify password",
+    "slug": "python-25-verify_password",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3167,
+    "title": "generate token",
+    "slug": "python-25-generate_token",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3168,
+    "title": "sign payload",
+    "slug": "python-25-sign_payload",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3169,
+    "title": "verify payload",
+    "slug": "python-25-verify_payload",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3170,
+    "title": "sanitize filename",
+    "slug": "python-25-sanitize_filename",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3171,
+    "title": "is safe url",
+    "slug": "python-25-is_safe_url",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3172,
+    "title": "redact",
+    "slug": "python-25-redact",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3173,
+    "title": "parse json safely",
+    "slug": "python-25-parse_json_safely",
+    "difficulty": "Medium",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Security for Python developers"
+    ]
+  },
+  {
+    "id": -3174,
+    "title": "Project 01 · Milestone 1 — tools from type hints",
+    "slug": "python-project-01-1",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3175,
+    "title": "Project 01 · Milestone 2 — the model boundary",
+    "slug": "python-project-01-2",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3176,
+    "title": "Project 01 · Milestone 3 — the agent loop",
+    "slug": "python-project-01-3",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3177,
+    "title": "Project 01 · Milestone 4 — multiple agents",
+    "slug": "python-project-01-4",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3178,
+    "title": "Project 01 · Milestone 5 — memory and state",
+    "slug": "python-project-01-5",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3179,
+    "title": "Project 01 · Milestone 6 — observability (module 17)",
+    "slug": "python-project-01-6",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 01 — `agentkit`: a multi-agent orchestration library"
+    ]
+  },
+  {
+    "id": -3180,
+    "title": "Project 02 · Milestone 1 — the scalar autograd engine",
+    "slug": "python-project-02-1",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3181,
+    "title": "Project 02 · Milestone 2 — a tensor",
+    "slug": "python-project-02-2",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3182,
+    "title": "Project 02 · Milestone 3 — the `Module` system",
+    "slug": "python-project-02-3",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3183,
+    "title": "Project 02 · Milestone 4 — losses and optimisers",
+    "slug": "python-project-02-4",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3184,
+    "title": "Project 02 · Milestone 5 — training that actually converges",
+    "slug": "python-project-02-5",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3185,
+    "title": "Project 02 · Milestone 6 — performance",
+    "slug": "python-project-02-6",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 02 — `tensorlab`: build your own PyTorch"
+    ]
+  },
+  {
+    "id": -3186,
+    "title": "Project 03 · Milestone 1 — the domain, with no framework in sight",
+    "slug": "python-project-03-1",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3187,
+    "title": "Project 03 · Milestone 2 — ports and adapters",
+    "slug": "python-project-03-2",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3188,
+    "title": "Project 03 · Milestone 3 — services",
+    "slug": "python-project-03-3",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3189,
+    "title": "Project 03 · Milestone 4 — the HTTP layer",
+    "slug": "python-project-03-4",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3190,
+    "title": "Project 03 · Milestone 5 — the HTML side (module 16)",
+    "slug": "python-project-03-5",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3191,
+    "title": "Project 03 · Milestone 6 — operations (module 17)",
+    "slug": "python-project-03-6",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 03 — `pulse`: a production-grade FastAPI service"
+    ]
+  },
+  {
+    "id": -3192,
+    "title": "Project 04 · Milestone 1 — jobs and the registry",
+    "slug": "python-project-04-1",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3193,
+    "title": "Project 04 · Milestone 2 — the broker Protocol",
+    "slug": "python-project-04-2",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3194,
+    "title": "Project 04 · Milestone 3 — the worker",
+    "slug": "python-project-04-3",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3195,
+    "title": "Project 04 · Milestone 4 — scheduling",
+    "slug": "python-project-04-4",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3196,
+    "title": "Project 04 · Milestone 5 — reliability and flow control",
+    "slug": "python-project-04-5",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3197,
+    "title": "Project 04 · Milestone 6 — operations",
+    "slug": "python-project-04-6",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 04 — `forge`: a durable task queue and scheduler"
+    ]
+  },
+  {
+    "id": -3198,
+    "title": "Project 05 · Milestone 1 — speak ASGI",
+    "slug": "python-project-05-1",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  },
+  {
+    "id": -3199,
+    "title": "Project 05 · Milestone 2 — routing",
+    "slug": "python-project-05-2",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  },
+  {
+    "id": -3200,
+    "title": "Project 05 · Milestone 3 — handler signatures from type hints",
+    "slug": "python-project-05-3",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  },
+  {
+    "id": -3201,
+    "title": "Project 05 · Milestone 4 — dependency injection",
+    "slug": "python-project-05-4",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  },
+  {
+    "id": -3202,
+    "title": "Project 05 · Milestone 5 — middleware, errors, lifespan",
+    "slug": "python-project-05-5",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  },
+  {
+    "id": -3203,
+    "title": "Project 05 · Milestone 6 — the extras that prove it's real",
+    "slug": "python-project-05-6",
+    "difficulty": "Hard",
+    "premium": false,
+    "tags": [
+      "Python Engineer",
+      "Project 05 — `zephyr`: write your own FastAPI"
+    ]
+  }
+]

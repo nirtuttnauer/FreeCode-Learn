@@ -1,0 +1,61 @@
+{
+  "id": -2006,
+  "title": "Make retries idempotent",
+  "slug": "systems-6",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "System design",
+    "Reliable writes"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 6 · Reliable writes</strong></p>\n<p>Retries can arrive after a successful side effect whose response was lost. An idempotency key identifies one logical operation. Reusing the key with a different payload should be rejected, not treated as a valid replay.</p><h3>Build it</h3><p>Process [key,payload] requests. Allocate sequential IDs starting at 1 for first-seen keys. Replays with the same payload return the original ID; a different payload returns \"conflict\" without replacing the stored operation.</p>\n<p><strong>Contract:</strong> Implement <code>idempotency</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> requests = [[&quot;k1&quot;, &quot;order-a&quot;], [&quot;k1&quot;, &quot;order-a&quot;], [&quot;k2&quot;, &quot;order-b&quot;], [&quot;k1&quot;, &quot;different&quot;]]\n<strong>Expected:</strong> [1, 1, 2, &quot;conflict&quot;]</pre><pre><strong>Input:</strong> requests = []\n<strong>Expected:</strong> []</pre><details><summary>Hint</summary><p>Store both the original payload and the assigned result for each key.</p></details>\n<h3>Review your understanding</h3><p>Where must the deduplication record and side effect be committed atomically? How do expiry and concurrent retries complicate this?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def idempotency(self, requests: list[list[str]]) -> list:\n        records={}\n        result=[]\n        for key,payload in requests:\n            if key not in records:records[key]=(payload,len(records)+1)\n            stored,identifier=records[key]\n            result.append(identifier if stored==payload else \"conflict\")\n        return result\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def idempotency(self, requests: list[list[str]]) -> list:\n        # Process [key,payload] requests\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "requests = [[\"k1\", \"order-a\"], [\"k1\", \"order-a\"], [\"k2\", \"order-b\"], [\"k1\", \"different\"]]",
+      "output": "[1, 1, 2, \"conflict\"]",
+      "args": [
+        [
+          [
+            "k1",
+            "order-a"
+          ],
+          [
+            "k1",
+            "order-a"
+          ],
+          [
+            "k2",
+            "order-b"
+          ],
+          [
+            "k1",
+            "different"
+          ]
+        ]
+      ],
+      "expected": [
+        1,
+        1,
+        2,
+        "conflict"
+      ]
+    },
+    {
+      "input": "requests = []",
+      "output": "[]",
+      "args": [
+        []
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

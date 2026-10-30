@@ -1,0 +1,83 @@
+{
+  "id": -2008,
+  "title": "Model a queue visibility lease",
+  "slug": "systems-8",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "System design",
+    "Reliable writes"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 8 · Reliable writes</strong></p>\n<p>A visibility lease temporarily hides a polled message. If processing fails and the lease expires, the message becomes eligible again: at-least-once delivery needs idempotent consumers. This simplified queue uses message IDs for acknowledgements; real systems need receipt tokens to reject stale acknowledgements.</p><h3>Build it</h3><p>Simulate enqueue(id,time), poll(time), and ack(id,time). Return an ID or None for each poll. Pick the earliest enqueued currently visible message, then hide it until poll_time+lease. Ack removes the ID. IDs are unique; operations are time-ordered and lease is positive.</p>\n<p><strong>Contract:</strong> Implement <code>queue</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> operations = [[&quot;enqueue&quot;, &quot;a&quot;, 0], [&quot;enqueue&quot;, &quot;b&quot;, 0], [&quot;poll&quot;, 0], [&quot;poll&quot;, 0], [&quot;poll&quot;, 1], [&quot;poll&quot;, 5], [&quot;ack&quot;, &quot;a&quot;, 5], [&quot;poll&quot;, 5]], lease = 5\n<strong>Expected:</strong> [&quot;a&quot;, &quot;b&quot;, null, &quot;a&quot;, &quot;b&quot;]</pre><pre><strong>Input:</strong> operations = [], lease = 3\n<strong>Expected:</strong> []</pre><details><summary>Hint</summary><p>Track a visible-again time for each message and retain original enqueue order.</p></details>\n<h3>Review your understanding</h3><p>Why is an ack by ID unsafe when a lease expires and another worker receives the message?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "class Solution:\n    def queue(self, operations: list[list], lease: float) -> list:\n        items=[]\n        result=[]\n        for op in operations:\n            if op[0]==\"enqueue\":items.append([op[1],float(op[2])])\n            elif op[0]==\"ack\":items=[item for item in items if item[0]!=op[1]]\n            else:\n                now=op[1]\n                available=next((item for item in items if item[1]<=now),None)\n                result.append(available[0] if available else None)\n                if available:available[1]=now+lease\n        return result\n"
+  },
+  "starters": {
+    "python": "class Solution:\n    def queue(self, operations: list[list], lease: float) -> list:\n        # Simulate enqueue(id,time), poll(time), and ack(id,time)\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "operations = [[\"enqueue\", \"a\", 0], [\"enqueue\", \"b\", 0], [\"poll\", 0], [\"poll\", 0], [\"poll\", 1], [\"poll\", 5], [\"ack\", \"a\", 5], [\"poll\", 5]], lease = 5",
+      "output": "[\"a\", \"b\", null, \"a\", \"b\"]",
+      "args": [
+        [
+          [
+            "enqueue",
+            "a",
+            0
+          ],
+          [
+            "enqueue",
+            "b",
+            0
+          ],
+          [
+            "poll",
+            0
+          ],
+          [
+            "poll",
+            0
+          ],
+          [
+            "poll",
+            1
+          ],
+          [
+            "poll",
+            5
+          ],
+          [
+            "ack",
+            "a",
+            5
+          ],
+          [
+            "poll",
+            5
+          ]
+        ],
+        5
+      ],
+      "expected": [
+        "a",
+        "b",
+        null,
+        "a",
+        "b"
+      ]
+    },
+    {
+      "input": "operations = [], lease = 3",
+      "output": "[]",
+      "args": [
+        [],
+        3
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/",
+  "missingImages": []
+}

@@ -1,0 +1,21 @@
+{
+  "name": "freecode-linux",
+  "productName": "FreeCode",
+  "version": "0.7.0-preview.1",
+  "private": true,
+  "main": "main.cjs",
+  "scripts": {
+    "build": "esbuild ui.js --bundle --format=iife --target=chrome130 --outfile=renderer.js"
+  },
+  "dependencies": {
+    "@codemirror/commands": "6.11.1",
+    "@codemirror/lang-cpp": "6.0.3",
+    "@codemirror/lang-java": "6.0.2",
+    "@codemirror/lang-javascript": "6.2.5",
+    "@codemirror/lang-python": "6.2.1",
+    "@codemirror/lang-sql": "6.10.0",
+    "@lezer/highlight": "1.2.5",
+    "codemirror": "6.0.2",
+    "esbuild": "0.28.2"
+  }
+}

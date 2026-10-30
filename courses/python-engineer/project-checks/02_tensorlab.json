@@ -1,0 +1,20 @@
+{
+  "1": [
+    "test_acceptance.py"
+  ],
+  "2": [
+    "test_milestones.py::TestMilestone2"
+  ],
+  "3": [
+    "test_milestones.py::TestMilestone3"
+  ],
+  "4": [
+    "test_milestones.py::TestMilestone4"
+  ],
+  "5": [
+    "test_milestones.py::TestMilestone5"
+  ],
+  "6": [
+    "test_milestones.py::TestMilestone6"
+  ]
+}

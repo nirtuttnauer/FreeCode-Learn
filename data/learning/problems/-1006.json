@@ -1,0 +1,119 @@
+{
+  "id": -1006,
+  "title": "Mask future tokens in causal attention",
+  "slug": "llm-6",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "Attention"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 6 · Attention</strong></p>\n<p>Autoregressive decoding must not see future tokens. Query at index i attends only to positions 0 through i, including itself. The first output must not change when future keys or values change.</p><h3>Build it</h3><p>Return a causal attention output for every query. All three sequences are nonempty and have equal length. Use the provided single-query attention helper.</p>\n<p><strong>Contract:</strong> Implement <code>causal</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> queries = [[1, 0], [0, 1]], keys = [[1, 0], [0, 1]], values = [[10, 0], [0, 20]]\n<strong>Expected:</strong> [[10.0, 0.0], [3.302384506733431, 13.395230986533138]]</pre><pre><strong>Input:</strong> queries = [[1], [2], [3]], keys = [[1], [2], [100]], values = [[1], [2], [999]]\n<strong>Expected:</strong> [[1.0], [1.8807970779778822], [999.0]]</pre><details><summary>Hint</summary><p>Slice keys and values to the current position, rather than computing future scores.</p></details>\n<h3>Review your understanding</h3><p>Why would unmasked attention make next-token training look better while breaking generation?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def causal(self, queries: list[list[float]], keys: list[list[float]], values: list[list[float]]) -> list[list[float]]:\n        return [attend(q,keys[:i+1],values[:i+1]) for i,q in enumerate(queries)]\n"
+  },
+  "starters": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\nclass Solution:\n    def causal(self, queries: list[list[float]], keys: list[list[float]], values: list[list[float]]) -> list[list[float]]:\n        # Return a causal attention output for every query\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "queries = [[1, 0], [0, 1]], keys = [[1, 0], [0, 1]], values = [[10, 0], [0, 20]]",
+      "output": "[[10.0, 0.0], [3.302384506733431, 13.395230986533138]]",
+      "args": [
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            10,
+            0
+          ],
+          [
+            0,
+            20
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          10.0,
+          0.0
+        ],
+        [
+          3.302384506733431,
+          13.395230986533138
+        ]
+      ]
+    },
+    {
+      "input": "queries = [[1], [2], [3]], keys = [[1], [2], [100]], values = [[1], [2], [999]]",
+      "output": "[[1.0], [1.8807970779778822], [999.0]]",
+      "args": [
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            100
+          ]
+        ],
+        [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            999
+          ]
+        ]
+      ],
+      "expected": [
+        [
+          1.0
+        ],
+        [
+          1.8807970779778822
+        ],
+        [
+          999.0
+        ]
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

@@ -1,0 +1,77 @@
+{
+  "id": -1004,
+  "title": "Measure next-token cross entropy",
+  "slug": "llm-4",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "Probabilities and loss"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 4 · Probabilities and loss</strong></p>\n<p>For each position, cross entropy is the negative log probability of the correct next token. Use log-sum-exp directly so an extremely small probability does not become log(0).</p><h3>Build it</h3><p>Return the mean cross entropy in natural-log units over aligned, nonempty logits and valid target IDs. Every row has a common vocabulary size.</p>\n<p><strong>Contract:</strong> Implement <code>loss</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> logits = [[0, 0], [2, 0]], targets = [0, 0]\n<strong>Expected:</strong> 0.410037595801459</pre><pre><strong>Input:</strong> logits = [[1000, 1001, 999]], targets = [1]\n<strong>Expected:</strong> 0.40760596444442854</pre><details><summary>Hint</summary><p>For one row use max(row) + log(sum(exp(score−max))) − score[target].</p></details>\n<h3>Review your understanding</h3><p>What does a loss of log(vocabulary size) tell you about a uniform model?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\nclass Solution:\n    def loss(self, logits: list[list[float]], targets: list[int]) -> float:\n        total=0.0\n        for row,target in zip(logits,targets):\n            peak=max(row)\n            total+=peak+math.log(sum(math.exp(v-peak) for v in row))-row[target]\n        return total/len(targets)\n"
+  },
+  "starters": {
+    "python": "import math\n\nclass Solution:\n    def loss(self, logits: list[list[float]], targets: list[int]) -> float:\n        # Return the mean cross entropy in natural-log units over aligned, nonempty logits and valid target IDs\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "logits = [[0, 0], [2, 0]], targets = [0, 0]",
+      "output": "0.410037595801459",
+      "args": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": 0.410037595801459
+    },
+    {
+      "input": "logits = [[1000, 1001, 999]], targets = [1]",
+      "output": "0.40760596444442854",
+      "args": [
+        [
+          [
+            1000,
+            1001,
+            999
+          ]
+        ],
+        [
+          1
+        ]
+      ],
+      "expected": 0.40760596444442854
+    },
+    {
+      "input": "logits = [[-1000, -1000]], targets = [0]",
+      "output": "0.6931471805598903",
+      "args": [
+        [
+          [
+            -1000,
+            -1000
+          ]
+        ],
+        [
+          0
+        ]
+      ],
+      "expected": 0.6931471805598903
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

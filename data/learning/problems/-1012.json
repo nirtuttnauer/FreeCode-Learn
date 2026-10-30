@@ -1,0 +1,71 @@
+{
+  "id": -1012,
+  "title": "Generate tokens with a tiny transformer",
+  "slug": "llm-12",
+  "url": "",
+  "difficulty": "Hard",
+  "tags": [
+    "LLM engineering",
+    "Train and generate"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 12 · Train and generate</strong></p>\n<p>Autoregressive generation feeds the growing context back through a model. The provided next_logits function combines embeddings, position signals, causal attention, a residual feedforward block, and a vocabulary projection. Its fixed, untrained weights demonstrate mechanics; they do not generate useful language.</p><h3>Build it</h3><p>Return the prompt plus steps greedy next-token predictions. Use next_logits on the entire current context each step. On a tie choose the smallest token ID. prompt is nonempty with IDs 0–3; steps is 0–10.</p>\n<p><strong>Contract:</strong> Implement <code>generate</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> prompt = [0], steps = 4\n<strong>Expected:</strong> [0, 0, 0, 0, 0]</pre><pre><strong>Input:</strong> prompt = [1, 2], steps = 3\n<strong>Expected:</strong> [1, 2, 1, 0, 0]</pre><details><summary>Hint</summary><p>Python’s max over an ascending range keeps the first index when scores tie. Copy the prompt before appending.</p></details>\n<h3>Review your understanding</h3><p>Which computations repeat for the old tokens? Where would a KV cache help? Explain why a trained model and a real tokenizer are still needed.</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\n# Fixed untrained, two-feature transformer for inspecting generation mechanics.\nEMBEDDINGS = [[1.0, 0.0], [0.0, 1.0], [-1.0, 0.0], [0.0, -1.0]]\n\ndef next_logits(ids):\n    rows = [[a+b for a,b in zip(EMBEDDINGS[t], [math.sin(i), math.cos(i)])] for i,t in enumerate(ids)]\n    normalized = [norm(row) for row in rows]\n    h = []\n    for i,row in enumerate(rows):\n        a = attend(normalized[i], normalized[:i+1], normalized[:i+1])\n        u = [x+y for x,y in zip(row,a)]\n        h.append([x+max(0,y) for x,y in zip(u,norm(u))])\n    last = norm(h[-1])\n    return [sum(a*b for a,b in zip(last,e)) for e in EMBEDDINGS]\n\nclass Solution:\n    def generate(self, prompt: list[int], steps: int) -> list[int]:\n        tokens=list(prompt)\n        for _ in range(steps):\n            logits=next_logits(tokens)\n            tokens.append(max(range(len(logits)),key=lambda i:logits[i]))\n        return tokens\n"
+  },
+  "starters": {
+    "python": "import math\n\ndef softmax(values):\n    peak = max(values)\n    weights = [math.exp(v-peak) for v in values]\n    return [w/sum(weights) for w in weights]\n\ndef norm(x, eps=1e-5):\n    mean = sum(x)/len(x)\n    variance = sum((v-mean)**2 for v in x)/len(x)\n    return [(v-mean)/math.sqrt(variance+eps) for v in x]\n\ndef attend(q, keys, values):\n    weights = softmax([sum(a*b for a,b in zip(q,k))/math.sqrt(len(q)) for k in keys])\n    return [sum(w*v[j] for w,v in zip(weights,values)) for j in range(len(values[0]))]\n\ndef affine(x, weights, bias):\n    return [sum(x[i]*weights[i][j] for i in range(len(x)))+bias[j] for j in range(len(bias))]\n\n# Fixed untrained, two-feature transformer for inspecting generation mechanics.\nEMBEDDINGS = [[1.0, 0.0], [0.0, 1.0], [-1.0, 0.0], [0.0, -1.0]]\n\ndef next_logits(ids):\n    rows = [[a+b for a,b in zip(EMBEDDINGS[t], [math.sin(i), math.cos(i)])] for i,t in enumerate(ids)]\n    normalized = [norm(row) for row in rows]\n    h = []\n    for i,row in enumerate(rows):\n        a = attend(normalized[i], normalized[:i+1], normalized[:i+1])\n        u = [x+y for x,y in zip(row,a)]\n        h.append([x+max(0,y) for x,y in zip(u,norm(u))])\n    last = norm(h[-1])\n    return [sum(a*b for a,b in zip(last,e)) for e in EMBEDDINGS]\n\nclass Solution:\n    def generate(self, prompt: list[int], steps: int) -> list[int]:\n        # Return the prompt plus steps greedy next-token predictions\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "prompt = [0], steps = 4",
+      "output": "[0, 0, 0, 0, 0]",
+      "args": [
+        [
+          0
+        ],
+        4
+      ],
+      "expected": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "input": "prompt = [1, 2], steps = 3",
+      "output": "[1, 2, 1, 0, 0]",
+      "args": [
+        [
+          1,
+          2
+        ],
+        3
+      ],
+      "expected": [
+        1,
+        2,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "input": "prompt = [3], steps = 0",
+      "output": "[3]",
+      "args": [
+        [
+          3
+        ],
+        0
+      ],
+      "expected": [
+        3
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

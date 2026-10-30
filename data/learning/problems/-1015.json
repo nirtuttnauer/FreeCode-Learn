@@ -1,0 +1,55 @@
+{
+  "id": -1015,
+  "title": "Evaluate masked token perplexity",
+  "slug": "llm-15",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "LLM engineering"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 15 · LLM engineering</strong></p>\n<p>Perplexity is exp(mean token negative log likelihood). Padding and ignored prompt positions should not influence the mean. Perplexity comparisons also depend on the tokenizer and evaluation data.</p><h3>Build it</h3><p>Return exp(mean(losses whose mask is 1)). Equal-length lists contain finite nonnegative natural-log losses; mask contains 0 or 1 and selects at least one loss. Selected mean is below 100.</p>\n<p><strong>Contract:</strong> Implement <code>perplexity</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> losses = [0.6931471805599453, 99, 0.6931471805599453], mask = [1, 0, 1]\n<strong>Expected:</strong> 2.0</pre><pre><strong>Input:</strong> losses = [0, 1], mask = [1, 1]\n<strong>Expected:</strong> 1.6487212707001282</pre><details><summary>Hint</summary><p>Average only the included tokens, not the padded sequence length.</p></details>\n<h3>Review your understanding</h3><p>Why can lower perplexity fail to imply better task completion or safer answers?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\nclass Solution:\n    def perplexity(self, losses: list[float], mask: list[int]) -> float:\n        selected=[loss for loss,keep in zip(losses,mask) if keep]\n        return math.exp(sum(selected)/len(selected))\n"
+  },
+  "starters": {
+    "python": "import math\n\nclass Solution:\n    def perplexity(self, losses: list[float], mask: list[int]) -> float:\n        # Return exp(mean(losses whose mask is 1))\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "losses = [0.6931471805599453, 99, 0.6931471805599453], mask = [1, 0, 1]",
+      "output": "2.0",
+      "args": [
+        [
+          0.6931471805599453,
+          99,
+          0.6931471805599453
+        ],
+        [
+          1,
+          0,
+          1
+        ]
+      ],
+      "expected": 2.0
+    },
+    {
+      "input": "losses = [0, 1], mask = [1, 1]",
+      "output": "1.6487212707001282",
+      "args": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "expected": 1.6487212707001282
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

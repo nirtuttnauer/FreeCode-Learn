@@ -1,0 +1,90 @@
+{
+  "id": -1014,
+  "title": "Retrieve context by cosine similarity",
+  "slug": "llm-14",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "LLM engineering"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 14 · LLM engineering</strong></p>\n<p>Retrieval-augmented generation starts by finding relevant context. This exercise isolates exact vector ranking using precomputed embeddings; it does not provide an embedding model or prove answer quality.</p><h3>Build it</h3><p>Return the indices of the top k document vectors by descending cosine similarity, breaking ties by smaller index. A zero-norm vector has similarity 0. All vectors have query width; 0 ≤ k ≤ document count.</p>\n<p><strong>Contract:</strong> Implement <code>retrieve</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> query = [1, 0], documents = [[0, 1], [2, 0], [1, 1]], k = 2\n<strong>Expected:</strong> [1, 2]</pre><pre><strong>Input:</strong> query = [0, 0], documents = [[1, 0], [0, 1]], k = 2\n<strong>Expected:</strong> [0, 1]</pre><details><summary>Hint</summary><p>Normalize the dot product by both lengths. Sort using negative similarity and the index.</p></details>\n<h3>Review your understanding</h3><p>How would you test retrieval relevance, prevent document leakage, and decide whether generated answers are supported by retrieved evidence?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\nclass Solution:\n    def retrieve(self, query: list[float], documents: list[list[float]], k: int) -> list[int]:\n        def cosine(vector):\n            denominator=math.sqrt(sum(v*v for v in query)*sum(v*v for v in vector))\n            return sum(a*b for a,b in zip(query,vector))/denominator if denominator else 0.0\n        return sorted(range(len(documents)),key=lambda i:(-cosine(documents[i]),i))[:k]\n"
+  },
+  "starters": {
+    "python": "import math\n\nclass Solution:\n    def retrieve(self, query: list[float], documents: list[list[float]], k: int) -> list[int]:\n        # Return the indices of the top k document vectors by descending cosine similarity, breaking ties by smaller index\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "query = [1, 0], documents = [[0, 1], [2, 0], [1, 1]], k = 2",
+      "output": "[1, 2]",
+      "args": [
+        [
+          1,
+          0
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        1,
+        2
+      ]
+    },
+    {
+      "input": "query = [0, 0], documents = [[1, 0], [0, 1]], k = 2",
+      "output": "[0, 1]",
+      "args": [
+        [
+          0,
+          0
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        2
+      ],
+      "expected": [
+        0,
+        1
+      ]
+    },
+    {
+      "input": "query = [1, 2], documents = [], k = 0",
+      "output": "[]",
+      "args": [
+        [
+          1,
+          2
+        ],
+        [],
+        0
+      ],
+      "expected": []
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

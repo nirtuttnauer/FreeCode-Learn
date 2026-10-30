@@ -1,0 +1,94 @@
+[project]
+name = "mypycourse"
+version = "0.1.0"
+description = "Python refresher course: basics to advanced"
+requires-python = ">=3.12"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "hypothesis>=6.100",
+    "mypy>=1.11",
+    "ruff>=0.6",
+    # modules 15-17, 21
+    "fastapi>=0.115",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "uvicorn>=0.30",
+    "jinja2>=3.1",
+    "opentelemetry-api>=1.27",
+    "opentelemetry-sdk>=1.27",
+    # modules 23-24
+    "numpy>=2.0",
+    "pandas>=2.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+# The projects/ acceptance suites are red until you build them — run them explicitly
+# with `make project P=02`.
+norecursedirs = ["projects", ".venv", ".git", ".*", "*.egg-info", "build", "dist"]
+addopts = "-q --strict-markers"
+markers = [
+    "slow: takes more than a second (deselect with '-m \"not slow\"')",
+]
+filterwarnings = [
+    "error::DeprecationWarning",
+    # starlette's TestClient nags about httpx2; not our concern in a course repo
+    "ignore:Using `httpx` with `starlette.testclient`:",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "C4", "RET", "PIE", "PT"]
+ignore = [
+    "E501",   # long lines in prose-heavy lesson files are fine
+    "B008",   # function call in default arg — demonstrated on purpose in module 03
+    "UP047",  # "use PEP 695 generics" — module 07 deliberately teaches BOTH syntaxes
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Lessons demonstrate anti-patterns on purpose.
+"*/lesson_*.py" = ["B006", "B015", "B018", "B023", "C416", "F541", "F841", "PT028", "RET501", "RET503", "SIM105", "SIM905"]
+"*/exercises_*.py" = ["ARG001", "RET501", "RET503"]
+# Tests: a bare `pytest.raises(ValueError)` is the point when the message isn't specified,
+# and nested `with` blocks read better than a combined one in assertions.
+"*/test_*.py" = ["B015", "B017", "B018", "PT011", "PT012", "PT017", "PT018", "PT028", "SIM117"]
+"projects/**" = ["ARG001", "ARG002", "B017", "PT011", "PT012", "SIM117", "UP037"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+check_untyped_defs = true
+# projects/ holds five independent skeletons, each with its own test_acceptance.py;
+# they are not one package, so mypy would (correctly) complain about duplicate modules.
+# What mypy checks here: the exercise files you write, and courselib. Deliberately NOT
+# checked: lesson files (they demonstrate anti-patterns on purpose), reference solutions,
+# the test suites (graders, intentionally loosely typed), and projects/ (five independent
+# skeletons whose files share names, which mypy reads as duplicate modules).
+exclude = [
+    '(^|/)(solutions_|lesson_|test_|bench_)',
+    '^projects/',
+    '^\\.venv/',
+]
+
+[[tool.mypy.overrides]]
+# pandas ships no type stubs; `pandas-stubs` is a separate optional install.
+module = ["pandas.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# From module 07 onward the whole point is strict typing.
+module = ["exercises_07", "exercises_12", "exercises_14"]
+disallow_untyped_defs = true
+disallow_any_generics = true

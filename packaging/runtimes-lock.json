@@ -1,0 +1,77 @@
+{
+  "retrievedAt": "2026-10-21",
+  "packages": [
+    {
+      "name": "python",
+      "version": "3.12.15",
+      "arch": "arm64",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261020/cpython-3.12.15+20261020-aarch64-apple-darwin-install_only_stripped.tar.gz",
+      "sha256": "e54a19fd9af218ddd4ed66bbec65f4e9062724ea848a0ddbd269e37765d9959e",
+      "filename": "cpython-3.12.15+20261020-aarch64-apple-darwin-install_only_stripped.tar.gz"
+    },
+    {
+      "name": "python",
+      "version": "3.12.15",
+      "arch": "x86_64",
+      "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261020/cpython-3.12.15+20261020-x86_64-apple-darwin-install_only_stripped.tar.gz",
+      "sha256": "dfe418e59942d3a73789846a161ba973ea4a1b6e2fa8636bc16ad49c398ff6e9",
+      "filename": "cpython-3.12.15+20261020-x86_64-apple-darwin-install_only_stripped.tar.gz"
+    },
+    {
+      "name": "node",
+      "version": "v24.22.1",
+      "arch": "arm64",
+      "filename": "node-v24.22.1-darwin-arm64.tar.gz",
+      "url": "https://nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-arm64.tar.gz",
+      "sha256": "89c682593d76cd44233fa53b1563264e7de9cbb189cad169135c5b4fadfbc0a7"
+    },
+    {
+      "name": "node",
+      "version": "v24.22.1",
+      "arch": "x86_64",
+      "filename": "node-v24.22.1-darwin-x64.tar.gz",
+      "url": "https://nodejs.org/dist/v24.22.1/node-v24.22.1-darwin-x64.tar.gz",
+      "sha256": "d132557e7ee2b85af08b0c8c34338e65c6430f2238d01f727728ef42dc83b035"
+    },
+    {
+      "name": "java",
+      "version": "jdk-21.0.12.1+1",
+      "arch": "arm64",
+      "filename": "OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.12.1_1.tar.gz",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_aarch64_mac_hotspot_21.0.12.1_1.tar.gz",
+      "sha256": "3623232f33a9c3baadf304480b2535f9a3cba8a58d42ecbb438ba267315d9998"
+    },
+    {
+      "name": "java",
+      "version": "jdk-21.0.12.1+1",
+      "arch": "x86_64",
+      "filename": "OpenJDK21U-jdk_x64_mac_hotspot_21.0.12.1_1.tar.gz",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_mac_hotspot_21.0.12.1_1.tar.gz",
+      "sha256": "44db0f08196daf19a47f90d13388b0c943b67663cb537f998fe29e836fa842ce"
+    },
+    {
+      "name": "zig",
+      "version": "0.14.1",
+      "arch": "arm64",
+      "filename": "zig-aarch64-macos-0.14.1.tar.xz",
+      "url": "https://ziglang.org/download/0.14.1/zig-aarch64-macos-0.14.1.tar.xz",
+      "sha256": "39f3dc5e79c22088ce878edc821dedb4ca5a1cd9f5ef915e9b3cc3053e8faefa"
+    },
+    {
+      "name": "zig",
+      "version": "0.14.1",
+      "arch": "x86_64",
+      "filename": "zig-x86_64-macos-0.14.1.tar.xz",
+      "url": "https://ziglang.org/download/0.14.1/zig-x86_64-macos-0.14.1.tar.xz",
+      "sha256": "b0f8bdfb9035783db58dd6c19d7dea89892acc3814421853e5752fe4573e5f43"
+    },
+    {
+      "name": "java-source",
+      "version": "jdk-21.0.12.1+1",
+      "arch": "shared",
+      "filename": "OpenJDK21U-jdk-sources_21.0.12.1_1.tar.gz",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk-sources_21.0.12.1_1.tar.gz",
+      "sha256": "573057d03584ae793fb7ec9a14c76d826d9187a53efeefd99da47403a5308234"
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": -1003,
+  "title": "Implement numerically stable softmax",
+  "slug": "llm-3",
+  "url": "",
+  "difficulty": "Medium",
+  "tags": [
+    "LLM engineering",
+    "Probabilities and loss"
+  ],
+  "premium": false,
+  "statement": "<p><strong>Step 3 · Probabilities and loss</strong></p>\n<p>Softmax turns scores into a probability distribution. Subtracting the largest score leaves the distribution unchanged and prevents exponentials from overflowing.</p><h3>Build it</h3><p>Return softmax probabilities for a nonempty list of finite logits. Use exp(logit − maximum), then divide by the sum.</p>\n<p><strong>Contract:</strong> Implement <code>softmax</code> using Python's standard library. Inputs satisfy the constraints stated here. Do not mutate the inputs. Use the provided helpers where present; they represent earlier steps.</p>\n<h3>Examples</h3><pre><strong>Input:</strong> logits = [0, 0, 0]\n<strong>Expected:</strong> [0.3333333333333333, 0.3333333333333333, 0.3333333333333333]</pre><pre><strong>Input:</strong> logits = [1000, 1001, 999]\n<strong>Expected:</strong> [0.24472847105479764, 0.6652409557748218, 0.09003057317038046]</pre><details><summary>Hint</summary><p>Compute the maximum once. Equal logits should produce equal probabilities.</p></details>\n<h3>Review your understanding</h3><p>Why does subtracting the same constant from every score leave the normalized result unchanged?</p>\n<p>Explain your reasoning in Notes before opening the worked solution. Passing the local checks completes this exercise; it does not certify production readiness or evaluate your design explanation.</p>",
+  "references": {
+    "python": "import math\n\nclass Solution:\n    def softmax(self, logits: list[float]) -> list[float]:\n        peak=max(logits)\n        weights=[math.exp(v-peak) for v in logits]\n        return [v/sum(weights) for v in weights]\n"
+  },
+  "starters": {
+    "python": "import math\n\nclass Solution:\n    def softmax(self, logits: list[float]) -> list[float]:\n        # Return softmax probabilities for a nonempty list of finite logits\n        raise NotImplementedError(\"Implement this step\")\n"
+  },
+  "samples": [
+    {
+      "input": "logits = [0, 0, 0]",
+      "output": "[0.3333333333333333, 0.3333333333333333, 0.3333333333333333]",
+      "args": [
+        [
+          0,
+          0,
+          0
+        ]
+      ],
+      "expected": [
+        0.3333333333333333,
+        0.3333333333333333,
+        0.3333333333333333
+      ]
+    },
+    {
+      "input": "logits = [1000, 1001, 999]",
+      "output": "[0.24472847105479764, 0.6652409557748218, 0.09003057317038046]",
+      "args": [
+        [
+          1000,
+          1001,
+          999
+        ]
+      ],
+      "expected": [
+        0.24472847105479764,
+        0.6652409557748218,
+        0.09003057317038046
+      ]
+    },
+    {
+      "input": "logits = [-1000, -1000]",
+      "output": "[0.5, 0.5]",
+      "args": [
+        [
+          -1000,
+          -1000
+        ]
+      ],
+      "expected": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "input": "logits = [3.5]",
+      "output": "[1.0]",
+      "args": [
+        [
+          3.5
+        ]
+      ],
+      "expected": [
+        1.0
+      ]
+    }
+  ],
+  "sourceURL": "https://docs.pytorch.org/tutorials/intermediate/scaled_dot_product_attention_tutorial.html",
+  "missingImages": []
+}

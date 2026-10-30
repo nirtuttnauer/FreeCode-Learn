@@ -1,0 +1,22 @@
+{
+  "1": [
+    "test_acceptance.py::TestToolSchema",
+    "test_acceptance.py::TestToolInvocation"
+  ],
+  "2": [
+    "test_milestones.py::TestMilestone2"
+  ],
+  "3": [
+    "test_acceptance.py::TestAgentLoop"
+  ],
+  "4": [
+    "test_acceptance.py::TestAgentAsTool",
+    "test_milestones.py::TestMilestone4"
+  ],
+  "5": [
+    "test_milestones.py::TestMilestone5"
+  ],
+  "6": [
+    "test_milestones.py::TestMilestone6"
+  ]
+}
