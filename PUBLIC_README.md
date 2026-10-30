@@ -181,9 +181,9 @@ Your work is kept outside the app, so updating or reinstalling doesn't touch it.
 | macOS | `~/Library/Application Support/OfflinePractice/` |
 | Linux | `${XDG_DATA_HOME:-~/.local/share}/PracticeCode/` |
 
-The macOS folder still uses the app's original name so that existing work carries over. On Linux,
-**Settings → Open saved-work folder** opens it. To keep experiments separate, set
-`OFFLINE_PRACTICE_WORK_DIR` to another directory before launching.
+The macOS folder still uses the app's original name so that existing work carries over. To open
+it, use **Settings → Reveal saved work** on macOS or **Settings → Open saved-work folder** on Linux.
+To keep experiments separate, set `OFFLINE_PRACTICE_WORK_DIR` to another directory before launching.
 
 Resetting your local account first moves your old files into a timestamped `backups/` folder inside
 that directory. If the backup can't be created, the reset is cancelled.
