@@ -1,7 +1,7 @@
 .build*/
 .cache/
 dist/
-node_modules/
+node_modules
 __pycache__/
 .DS_Store
 app/linux/renderer.js
