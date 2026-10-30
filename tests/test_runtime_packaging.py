@@ -33,7 +33,7 @@ class RuntimePackagingTests(unittest.TestCase):
                 executable.unlink()
                 with self.assertRaisesRegex(RuntimeError, 'Bundled node is missing'):
                     runner.tool('node')
-            with patch.object(runner, 'ROOT', Path(temp) / 'FreeCode.app/Contents/Resources'):
+            with patch.object(runner, 'ROOT', Path(temp) / 'PracticeCode.app/Contents/Resources'):
                 with self.assertRaisesRegex(RuntimeError, 'Bundled java is missing'):
                     runner.tool('java')
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile the editable Python Engineer course to FreeCode's offline format."""
+"""Compile the editable Python Engineer course to PracticeCode's offline format."""
 import ast
 import argparse
 import hashlib

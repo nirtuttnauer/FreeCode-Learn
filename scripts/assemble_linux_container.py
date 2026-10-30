@@ -37,7 +37,7 @@ def assemble(inputs, downloads, output):
                     mode = entry.external_attr >> 16
                     if mode:
                         (output / entry.filename).chmod(mode & 0o777)
-            (output / 'electron').rename(output / 'freecode-bin')
+            (output / 'electron').rename(output / 'practicecode-bin')
             (output / 'chrome-sandbox').chmod(0o755)
         else:
             target = output / 'resources/bundle/runtimes/x86_64' / package['name']
@@ -59,7 +59,7 @@ def assemble(inputs, downloads, output):
                 source.extractall(target, members=stripped)
     shutil.copytree(inputs / 'resources/app', output / 'resources/app')
     shutil.copytree(inputs / 'resources/bundle', output / 'resources/bundle', dirs_exist_ok=True, symlinks=True)
-    for name in ['FreeCode','Read Me.txt','freecode.desktop','manifest.json','runtime-lock.json']:
+    for name in ['PracticeCode','Read Me.txt','practicecode.desktop','manifest.json','runtime-lock.json']:
         shutil.copy2(inputs / name, output / name)
     print('Assembled Linux release:', output, flush=True)
 

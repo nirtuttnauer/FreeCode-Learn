@@ -8,17 +8,17 @@ const {pathToFileURL} = require('node:url');
 
 const appRoot = __dirname;
 const bundle = process.env.FREECODE_BUNDLE_ROOT || (fs.existsSync(path.join(appRoot, '../bundle/data')) ? path.resolve(appRoot, '../bundle') : path.resolve(appRoot, '../..'));
-const work = process.env.OFFLINE_PRACTICE_WORK_DIR || path.join(process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local/share'), 'FreeCode');
+const work = process.env.OFFLINE_PRACTICE_WORK_DIR || path.join(process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local/share'), 'PracticeCode');
 const python = path.join(bundle, 'runtimes', process.arch === 'arm64' ? 'arm64' : 'x86_64', 'python/bin/python3');
 let window, backend, activeRun, nextID = 0, allowClose = false;
 const pending = new Map();
-protocol.registerSchemesAsPrivileged([{scheme: 'freecode', privileges: {standard: true, secure: true, supportFetchAPI: true}}]);
-app.setName('FreeCode');
+protocol.registerSchemesAsPrivileged([{scheme: 'practicecode', privileges: {standard: true, secure: true, supportFetchAPI: true}}]);
+app.setName('PracticeCode');
 if (process.env.OFFLINE_PRACTICE_WORK_DIR) app.setPath('userData', path.join(work, 'ui-cache'));
 
 function call(method, params = {}) {
   return new Promise((resolve, reject) => {
-    if (!backend || backend.killed) return reject(new Error('The local state service is unavailable. Restart FreeCode.'));
+    if (!backend || backend.killed) return reject(new Error('The local state service is unavailable. Restart PracticeCode.'));
     const id = ++nextID;
     pending.set(id, {resolve, reject});
     backend.stdin.write(JSON.stringify({id, method, params}) + '\n', error => {
@@ -70,7 +70,7 @@ async function run(params) {
       settled = true; clearTimeout(timeout); activeRun = null;
       let result;
       try { result = stopped ? {success:false, message:'Stopped', output:'The run was stopped.', cases:[], stopped:true} : JSON.parse(output); }
-      catch { result = {success:false, message:'Runner could not finish', output:error?.message || errors || 'Reinstall the full FreeCode package if a runtime is missing.', cases:[]}; }
+      catch { result = {success:false, message:'Runner could not finish', output:error?.message || errors || 'Reinstall the full PracticeCode package if a runtime is missing.', cases:[]}; }
       try { resolve(await call('complete_run', {token: prepared.token, result})); }
       catch (failure) { resolve({result: {...result, output: (result.output || '') + '\nCould not save run: ' + failure.message}}); }
     };
@@ -81,11 +81,11 @@ async function run(params) {
 }
 
 function validateSender(event) {
-  if (!window || event.sender !== window.webContents || event.senderFrame !== window.webContents.mainFrame || event.senderFrame.url !== 'freecode://app/index.html') throw new Error('Untrusted request.');
+  if (!window || event.sender !== window.webContents || event.senderFrame !== window.webContents.mainFrame || event.senderFrame.url !== 'practicecode://app/index.html') throw new Error('Untrusted request.');
 }
 
 const ready = app.whenReady().then(async () => {
-  protocol.handle('freecode', request => {
+  protocol.handle('practicecode', request => {
     const url = new URL(request.url);
     const root = url.hostname === 'app' ? appRoot : url.hostname === 'library' ? path.join(bundle, 'data') : null;
     if (!root || request.method !== 'GET') return new Response('Not found', {status:404});
@@ -97,15 +97,15 @@ const ready = app.whenReady().then(async () => {
     return net.fetch(pathToFileURL(target).toString());
   });
   startBackend();
-  window = new BrowserWindow({width:1480, height:940, minWidth:900, minHeight:620, title:'FreeCode', icon:path.join(appRoot,'icon.png'),
+  window = new BrowserWindow({width:1480, height:940, minWidth:900, minHeight:620, title:'PracticeCode', icon:path.join(appRoot,'icon.png'),
     backgroundColor:'#0A121C', webPreferences:{preload:path.join(appRoot,'preload.cjs'), contextIsolation:true, sandbox:true, nodeIntegration:false, webviewTag:false}});
   window.webContents.session.setPermissionRequestHandler((_, __, callback) => callback(false));
   window.webContents.session.setPermissionCheckHandler(() => false);
-  window.webContents.session.webRequest.onBeforeRequest((details, callback) => callback({cancel: !details.url.startsWith('freecode://') && !details.url.startsWith('file://') && !details.url.startsWith('devtools://')}));
+  window.webContents.session.webRequest.onBeforeRequest((details, callback) => callback({cancel: !details.url.startsWith('practicecode://') && !details.url.startsWith('file://') && !details.url.startsWith('devtools://')}));
   window.on('close', event => { if (!allowClose) { event.preventDefault(); window.webContents.send('command','close'); } });
   window.webContents.on('will-navigate', event => event.preventDefault());
   window.webContents.setWindowOpenHandler(() => ({action:'deny'}));
-  ipcMain.handle('freecode', async (event, operation, params = {}) => {
+  ipcMain.handle('practicecode', async (event, operation, params = {}) => {
     validateSender(event);
     if (operation === 'closeReady') { allowClose = true; app.quit(); return true; }
     if (operation === 'export') {
@@ -155,9 +155,9 @@ const ready = app.whenReady().then(async () => {
     {label:'View', submenu:[{role:'togglefullscreen'},{role:'zoomIn'},{role:'zoomOut'},{role:'resetZoom'}]}
   ]));
   const initial = await call('bootstrap'); nativeTheme.themeSource = initial.settings.appearanceMode || 'system';
-  await window.loadURL('freecode://app/index.html');
+  await window.loadURL('practicecode://app/index.html');
   return {window, call, bundle, work};
-}).catch(error => { dialog.showErrorBox('FreeCode could not start', error.message); app.quit(); throw error; });
+}).catch(error => { dialog.showErrorBox('PracticeCode could not start', error.message); app.quit(); throw error; });
 
 app.on('before-quit', event => { if (!allowClose && window && !window.isDestroyed()) { event.preventDefault(); window.webContents.send('command','close'); return; } activeRun?.stop(); backend?.kill(); });
 app.on('window-all-closed', () => app.quit());

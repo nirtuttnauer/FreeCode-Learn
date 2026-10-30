@@ -396,7 +396,7 @@ final class Store {
                             self.updateProgressAfterRun(decoded, problemID: runProblemID, language: runLanguage, submitted: submitted)
                             self.activity.append(Activity(problemID: runProblemID, language: runLanguage, mode: runMode, success: decoded.success, passed: decoded.cases?.filter(\.passed).count ?? 0, total: decoded.cases?.count ?? 0, duration: decoded.duration))
                         } catch {
-                            self.result = RunResult(success: false, message: "Runner could not start", output: "\(error.localizedDescription)\nReinstall FreeCode from the full disk image if a bundled runtime is missing.", cases: [], duration: nil)
+                            self.result = RunResult(success: false, message: "Runner could not start", output: "\(error.localizedDescription)\nReinstall PracticeCode from the full disk image if a bundled runtime is missing.", cases: [], duration: nil)
                         }
                     }
                     self.saveNow()

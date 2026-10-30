@@ -9,7 +9,7 @@ struct OfflinePracticeApp: App {
     @AppStorage("workspaceLayout") private var layout = "split"
     private var preferredAppearance: ColorScheme? { appearanceMode == "dark" ? .dark : appearanceMode == "light" ? .light : nil }
     var body: some Scene {
-        WindowGroup("FreeCode") {
+        WindowGroup("PracticeCode") {
             ContentView(store: store)
                 .preferredColorScheme(preferredAppearance)
                 .onAppear { delegate.store = store; NSApp.setActivationPolicy(.regular); NSApp.activate(ignoringOtherApps: true) }

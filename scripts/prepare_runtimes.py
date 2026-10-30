@@ -92,13 +92,13 @@ def main():
             wrapper.parent.mkdir()
             wrapper.write_text('#!/bin/sh\nset -eu\n'
                 'RUNTIME_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)\n'
-                f'export ZIG_GLOBAL_CACHE_DIR="${{HOME}}/Library/Caches/FreeCode/zig/{arch}"\n'
+                f'export ZIG_GLOBAL_CACHE_DIR="${{HOME}}/Library/Caches/PracticeCode/zig/{arch}"\n'
                 'export ZIG_LOCAL_CACHE_DIR="$ZIG_GLOBAL_CACHE_DIR/local"\n'
                 f'exec "$RUNTIME_DIR/zig/zig" c++ -target {target}-macos.14.0 "$@"\n')
             wrapper.chmod(0o755)
         (staging / 'manifest.json').write_bytes(lock)
         (staging / 'README.txt').write_text(
-            'FreeCode bundled runtimes\n\n'
+            'PracticeCode bundled runtimes\n\n'
             'Python: python-build-standalone (PSF and bundled dependency licenses).\n'
             'Node.js: MIT and dependency licenses.\n'
             'Temurin OpenJDK 21: GPLv2 with Classpath Exception; corresponding source\n'
@@ -107,7 +107,7 @@ def main():
             'All original vendor licenses and notices are retained within each distribution.\n'
             'manifest.json records original download URLs, versions and SHA-256 checksums.\n'
             'C++ builds target macOS 14 and use the system libSystem only; no Apple SDK required.\n'
-            'Compiler caches are created in ~/Library/Caches/FreeCode/, outside the signed app.\n')
+            'Compiler caches are created in ~/Library/Caches/PracticeCode/, outside the signed app.\n')
         if OUTPUT.exists():
             shutil.rmtree(OUTPUT)
         staging.rename(OUTPUT)

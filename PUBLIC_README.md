@@ -1,4 +1,4 @@
-# FreeCode
+# PracticeCode
 
 An open-source, offline coding and learning desktop app. Native SwiftUI/AppKit on
 macOS 14+, with an Electron preview for Ubuntu/Debian x86_64. No account, server,
@@ -21,6 +21,12 @@ scenarios pass, not that a service is production-ready.
 The original Transformers & LLM engineering and System design tracks are included.
 The public app contains no imported LeetCode library.
 
+## Downloads
+
+Installers for macOS (Apple Silicon and Intel) and Linux are available on the
+[GitHub Releases page](https://github.com/nirtuttnauer/PracticeCode/releases).
+Releases contain original courses only; no LeetCode library, personal work or private history.
+
 ## Build
 
 macOS requires Command Line Tools with Swift 6.2+. Run:
@@ -29,8 +35,10 @@ macOS requires Command Line Tools with Swift 6.2+. Run:
 zsh scripts/build_app.sh
 ```
 
+The compatibility bundle identifier and saved-work directory remain unchanged across this rename.
+
 Build-time downloads are checksum-pinned and cached. Both Mac architectures receive
-their own Python course dependencies. The build signs and installs FreeCode at
+their own Python course dependencies. The build signs and installs PracticeCode at
 `/Applications/FreeCode.app`, preserving `local.offlinepractice.mac` and saved work
 in `~/Library/Application Support/OfflinePractice/`.
 

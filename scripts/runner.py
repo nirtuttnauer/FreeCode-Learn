@@ -82,7 +82,7 @@ def tool(name):
         candidate = runtimes / platform.machine() / paths[name]
         if candidate.is_file() and os.access(candidate, os.X_OK):
             return str(candidate)
-        raise RuntimeError(f'Bundled {name} is missing. Reinstall FreeCode from the full package.')
+        raise RuntimeError(f'Bundled {name} is missing. Reinstall PracticeCode from the full package.')
     # jenv's project selection works even when launched by Finder without shell init.
     if name in {'java', 'javac'}:
         jenv = shutil.which('jenv') or '/opt/homebrew/bin/jenv'

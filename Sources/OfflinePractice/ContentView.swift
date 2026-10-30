@@ -74,7 +74,7 @@ struct ContentView: View {
         }
         .sheet(isPresented: $store.showCoverage) { CoverageView(store: store) }
         .sheet(isPresented: $showPersonalLists) { PersonalListsView(store: store) }
-        .alert("FreeCode", isPresented: Binding(get: { store.error != nil }, set: { if !$0 { store.error = nil } })) {
+        .alert("PracticeCode", isPresented: Binding(get: { store.error != nil }, set: { if !$0 { store.error = nil } })) {
             Button("OK") { store.error = nil }
         } message: { Text(store.error ?? "") }
         .confirmationDialog("Replace the current code with the starter?", isPresented: $store.showReset) {
@@ -105,7 +105,7 @@ struct ContentView: View {
             VStack(alignment: .leading, spacing: 12) {
                 HStack(spacing: 10) {
                     Image(nsImage: NSApplication.shared.applicationIconImage).resizable().frame(width: 30, height: 30)
-                    Text("FreeCode").font(.system(size: 22, weight: .semibold)).tracking(-0.6)
+                    Text("PracticeCode").font(.system(size: 22, weight: .semibold)).tracking(-0.6)
                 }.padding(.bottom, 5)
                 VStack(spacing: 5) {
                     if !store.catalog.isEmpty { destination(.problems, symbol: "doc.text") }
@@ -341,7 +341,7 @@ struct ContentView: View {
             }
             Divider()
             HStack {
-                Text(store.section == .learning ? "FreeCode lesson" : "Statement: LeetCode · Archive: Doocs").font(.caption).foregroundStyle(FreeCodeTheme.secondary)
+                Text(store.section == .learning ? "PracticeCode lesson" : "Statement: LeetCode · Archive: Doocs").font(.caption).foregroundStyle(FreeCodeTheme.secondary)
                 Spacer()
                 if let url = URL(string: p.sourceURL) {
                     Link(store.section == .learning ? "Further reading" : "Source", destination: url).font(.caption).help("Open the source in your browser (requires internet)")
@@ -598,7 +598,7 @@ struct CoverageView: View {
                 Button("Reveal saved work") { NSWorkspace.shared.selectFile(nil, inFileViewerRootedAtPath: store.workURL.path) }
                 Button("Reveal coverage report") { NSWorkspace.shared.activateFileViewerSelecting([store.libraryURL.appendingPathComponent("coverage.json")]) }
             }
-            Text(store.catalog.isEmpty ? "FreeCode · Python Engineer · Original learning content" : "Problem statements belong to LeetCode. Community archive and references: Doocs, CC BY-SA 4.0. This app is independent of LeetCode.")
+            Text(store.catalog.isEmpty ? "PracticeCode · Python Engineer · Original learning content" : "Problem statements belong to LeetCode. Community archive and references: Doocs, CC BY-SA 4.0. This app is independent of LeetCode.")
                 .font(.caption).foregroundStyle(.secondary)
         }.padding(28).frame(width: 600).textSelection(.enabled)
     }

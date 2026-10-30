@@ -18,7 +18,7 @@ elif (( $# > 0 )); then
 fi
 swift build "${BUILD_OPTIONS[@]}"
 python3 scripts/prepare_runtimes.py
-APP="${PWD}/dist/FreeCode.app"
+APP="${PWD}/dist/PracticeCode.app"
 if [[ -d "${PWD}/dist/Offline Practice.app" && ! -e "$APP" ]]; then
     mv "${PWD}/dist/Offline Practice.app" "$APP"
 fi
@@ -38,30 +38,30 @@ done
 cp .java-version "${APP}/Contents/Resources/.java-version"
 rm -rf "${APP}/Contents/Resources/runtimes"
 ditto .cache/runtime-bundle "${APP}/Contents/Resources/runtimes"
-ICONSET="${PWD}/.cache/freecode.iconset"
+ICONSET="${PWD}/.cache/practicecode.iconset"
 mkdir -p "$ICONSET"
 for SIZE in 16 32 128 256 512; do
-    sips -z "$SIZE" "$SIZE" assets/freecode-icon-v2.png --out "$ICONSET/icon_${SIZE}x${SIZE}.png" >/dev/null
+    sips -z "$SIZE" "$SIZE" assets/practicecode-icon-v2.png --out "$ICONSET/icon_${SIZE}x${SIZE}.png" >/dev/null
     DOUBLE=$((SIZE * 2))
-    sips -z "$DOUBLE" "$DOUBLE" assets/freecode-icon-v2.png --out "$ICONSET/icon_${SIZE}x${SIZE}@2x.png" >/dev/null
+    sips -z "$DOUBLE" "$DOUBLE" assets/practicecode-icon-v2.png --out "$ICONSET/icon_${SIZE}x${SIZE}@2x.png" >/dev/null
 done
-iconutil -c icns "$ICONSET" -o "${APP}/Contents/Resources/freecode.icns"
+iconutil -c icns "$ICONSET" -o "${APP}/Contents/Resources/practicecode.icns"
 cat > "${APP}/Contents/Info.plist" <<'PLIST'
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
 <key>CFBundleExecutable</key><string>OfflinePractice</string>
 <key>CFBundleIdentifier</key><string>local.offlinepractice.mac</string>
-<key>CFBundleName</key><string>FreeCode</string>
-<key>CFBundleDisplayName</key><string>FreeCode</string>
-<key>CFBundleIconFile</key><string>freecode.icns</string>
+<key>CFBundleName</key><string>PracticeCode</string>
+<key>CFBundleDisplayName</key><string>PracticeCode</string>
+<key>CFBundleIconFile</key><string>practicecode.icns</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleShortVersionString</key><string>0.7.0</string>
 <key>CFBundleVersion</key><string>8</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 <key>NSSupportsAutomaticTermination</key><false/>
-<key>NSHumanReadableCopyright</key><string>FreeCode code: MIT. Original teaching content: CC BY 4.0. Third-party notices included with bundled content.</string>
+<key>NSHumanReadableCopyright</key><string>PracticeCode code: MIT. Original teaching content: CC BY 4.0. Third-party notices included with bundled content.</string>
 </dict></plist>
 PLIST
 codesign --force --sign - "${APP}"

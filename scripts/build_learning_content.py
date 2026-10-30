@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Author the bundled, dependency-free foundation tracks (original FreeCode exercises)."""
+"""Author the bundled, dependency-free foundation tracks (original PracticeCode exercises)."""
 import ast
 import copy
 import hashlib
@@ -310,7 +310,7 @@ def main():
         courses.append(dict(id=course,name=name,summary=summary,groups=groups))
     (OUTPUT/'catalog.json').write_text(json.dumps(catalog,indent=2,ensure_ascii=False)+'\n')
     (OUTPUT/'courses.json').write_text(json.dumps(courses,indent=2,ensure_ascii=False)+'\n')
-    (OUTPUT/'README.txt').write_text('Original FreeCode learning exercises. Python standard library only.\n\nThese foundation tracks teach concepts through small executable experiments.\nThey do not supply a trained LLM, GPU training environment, distributed deployment,\nor an automatic evaluator for architectural explanations. Notes contain your design reasoning.\n\nThe source links in each lesson are further reading. Lesson text, starter code,\nworked implementations, tests, and diagrams are authored for FreeCode; no third-party tutorial code is copied.\nRebuild bundled content with python3 scripts/build_learning_content.py.\n')
+    (OUTPUT/'README.txt').write_text('Original PracticeCode learning exercises. Python standard library only.\n\nThese foundation tracks teach concepts through small executable experiments.\nThey do not supply a trained LLM, GPU training environment, distributed deployment,\nor an automatic evaluator for architectural explanations. Notes contain your design reasoning.\n\nThe source links in each lesson are further reading. Lesson text, starter code,\nworked implementations, tests, and diagrams are authored for PracticeCode; no third-party tutorial code is copied.\nRebuild bundled content with python3 scripts/build_learning_content.py.\n')
     print(f'Authored {len(courses)} independent learning tracks, {len(catalog)} lessons, {sum(len(e["record"]["samples"]) for e in LESSONS)} local checks.')
     if (ROOT / 'courses/python-engineer/source').exists():
         import subprocess

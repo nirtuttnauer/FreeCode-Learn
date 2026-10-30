@@ -10,7 +10,7 @@ import uuid
 from pathlib import Path
 
 IDENTIFIER = 'local.offlinepractice.mac'
-PROCESS = r'^.*/FreeCode\.app/Contents/MacOS/OfflinePractice$'
+PROCESS = r'^.*/(?:FreeCode|PracticeCode)\.app/Contents/MacOS/OfflinePractice$'
 
 
 def verify_bundle(app):
@@ -29,7 +29,7 @@ def quit_running_app():
     deadline = time.monotonic() + 10
     while is_running():
         if time.monotonic() >= deadline:
-            raise RuntimeError('FreeCode did not quit; the installed copy was left unchanged.')
+            raise RuntimeError('PracticeCode did not quit; the installed copy was left unchanged.')
         time.sleep(0.1)
 
 
@@ -41,14 +41,14 @@ def install_app(source, destination):
     if destination.exists():
         verify_bundle(destination)
     # Stage on the installation volume; a copy failure never changes the old app.
-    with tempfile.TemporaryDirectory(prefix='.FreeCode-update-', dir=destination.parent) as temporary:
-        staged = Path(temporary) / 'FreeCode.app'
+    with tempfile.TemporaryDirectory(prefix='.PracticeCode-update-', dir=destination.parent) as temporary:
+        staged = Path(temporary) / 'PracticeCode.app'
         subprocess.run(['ditto', str(source), str(staged)], check=True)
         verify_bundle(staged)
         running = is_running()
         if running:
             quit_running_app()
-        backup = destination.with_name(f'.FreeCode-previous-{uuid.uuid4().hex}.app')
+        backup = destination.with_name(f'.PracticeCode-previous-{uuid.uuid4().hex}.app')
         try:
             if destination.exists():
                 destination.rename(backup)

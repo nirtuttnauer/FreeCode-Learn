@@ -62,7 +62,7 @@ def run(request, execute, learning):
         raise ValueError('Unknown course action.')
     if workspace['entrypoint'] not in files:
         raise ValueError('Restore or create the required entry file: ' + workspace['entrypoint'])
-    with tempfile.TemporaryDirectory(prefix='freecode-course-') as temp:
+    with tempfile.TemporaryDirectory(prefix='practicecode-course-') as temp:
         root = Path(temp)
         submission = root / 'submission'
         submission.mkdir()

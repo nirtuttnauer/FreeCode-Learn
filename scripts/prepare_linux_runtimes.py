@@ -28,7 +28,7 @@ def main():
         wrapper.parent.mkdir(parents=True)
         wrapper.write_text('#!/bin/sh\nset -eu\n'
                            'RUNTIME_DIR=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)\n'
-                           'export ZIG_GLOBAL_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/FreeCode/zig"\n'
+                           'export ZIG_GLOBAL_CACHE_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/PracticeCode/zig"\n'
                            'export ZIG_LOCAL_CACHE_DIR="$ZIG_GLOBAL_CACHE_DIR/local"\n'
                            'exec "$RUNTIME_DIR/zig/zig" c++ -target x86_64-linux-gnu.2.31 -mcpu=baseline "$@"\n')
         wrapper.chmod(0o755)
@@ -39,7 +39,7 @@ def main():
         shutil.copy2(shared.download(source_package), sources / source_package['filename'])
         (stage / 'manifest.json').write_bytes(lock)
         (stage / 'runtimes/manifest.json').write_bytes(lock)
-        (stage / 'runtimes/README.txt').write_text('FreeCode Linux runtimes: Python/SQLite (PSF), Node (MIT), Temurin OpenJDK (GPLv2 + Classpath Exception), Zig/C++ (MIT and bundled licenses). Original vendor notices remain in each distribution; corresponding OpenJDK source is in sources/. URLs and SHA-256 checksums are in manifest.json. Compiler caches are outside the app.\n')
+        (stage / 'runtimes/README.txt').write_text('PracticeCode Linux runtimes: Python/SQLite (PSF), Node (MIT), Temurin OpenJDK (GPLv2 + Classpath Exception), Zig/C++ (MIT and bundled licenses). Original vendor notices remain in each distribution; corresponding OpenJDK source is in sources/. URLs and SHA-256 checksums are in manifest.json. Compiler caches are outside the app.\n')
         if OUTPUT.exists():
             shutil.rmtree(OUTPUT)
         stage.rename(OUTPUT)

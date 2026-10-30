@@ -18,8 +18,8 @@ class InstallTests(unittest.TestCase):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)
         self.root = Path(self.temporary.name)
-        self.source = self.root / 'build/FreeCode.app'
-        self.destination = self.root / 'Applications/FreeCode.app'
+        self.source = self.root / 'build/PracticeCode.app'
+        self.destination = self.root / 'Applications/PracticeCode.app'
         for bundle, version in [(self.source, 'new'), (self.destination, 'old')]:
             (bundle / 'Contents').mkdir(parents=True)
             (bundle / 'Contents/Info.plist').write_bytes(plistlib.dumps({'CFBundleIdentifier': installer.IDENTIFIER}))
@@ -41,14 +41,14 @@ class InstallTests(unittest.TestCase):
         quit_app.assert_called_once()
         self.assertEqual((self.destination / 'Contents/version').read_text(), 'new')
         self.assertFalse((self.destination / 'stale-resource').exists())
-        self.assertEqual(list(self.destination.parent.glob('.FreeCode-*')), [])
+        self.assertEqual(list(self.destination.parent.glob('.PracticeCode-*')), [])
         self.assertIn(unittest.mock.call(['open', str(self.destination)], check=True), commands.call_args_list)
 
     def test_copy_and_replacement_failures_preserve_installed_app(self):
         rename = Path.rename
 
         def reject_staged_rename(path, destination):
-            if path.parent.name.startswith('.FreeCode-update-'):
+            if path.parent.name.startswith('.PracticeCode-update-'):
                 raise OSError('simulated replacement failure')
             return rename(path, destination)
 
@@ -66,7 +66,7 @@ class InstallTests(unittest.TestCase):
                     installer.install_app(self.source, self.destination)
                 self.assertEqual((self.destination / 'Contents/version').read_text(), 'old')
                 self.assertTrue((self.destination / 'stale-resource').exists())
-                self.assertEqual(list(self.destination.parent.glob('.FreeCode-*')), [])
+                self.assertEqual(list(self.destination.parent.glob('.PracticeCode-*')), [])
 
     def test_refuses_to_overwrite_a_different_application(self):
         (self.destination / 'Contents/Info.plist').write_bytes(plistlib.dumps({'CFBundleIdentifier': 'unrelated.app'}))

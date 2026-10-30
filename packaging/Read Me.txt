@@ -1,4 +1,4 @@
-FreeCode — offline original courses
+PracticeCode — offline original courses
 
 Python Engineer includes 26 modules and five guided projects.
 All required Python packages are bundled; no account or network connection is needed to study.
