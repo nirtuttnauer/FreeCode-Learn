@@ -45,7 +45,10 @@ import Foundation
         let publicData=URL(fileURLWithPath:CommandLine.arguments[1])
         let publicStore=Store(workDirectory:root.appendingPathComponent("public"),libraryDirectory:publicData)
         precondition(publicStore.error == nil,publicStore.error ?? "")
-        precondition(publicStore.catalog.isEmpty && publicStore.section == .learning && publicStore.isCourseExercise)
+        precondition(publicStore.catalog.isEmpty && publicStore.section == .learning)
+        precondition(publicStore.learningCatalog.contains { $0.id == publicStore.selection })
+        publicStore.chooseCourse("python-engineer")
+        precondition(publicStore.isCourseExercise)
         print("PASS: native course persistence, shared files, stale results, reset recovery and public startup")
     }
 }
